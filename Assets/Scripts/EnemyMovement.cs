@@ -10,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
     Vector2 targetPos;
     public float moveSpeed;
     Rigidbody2D rb;
+    public MoveDirection currentDir;
+    Vector2 direction;
 
     // Start is called before the first frame update
     void Start()
@@ -21,15 +23,34 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         DetermineTarget();
-
-
+        DetermineFacingDirection();
         Movement();
+    }
+
+    void DetermineFacingDirection()
+    {
+        if (direction.x > 0.5f)
+        {
+            currentDir = MoveDirection.RIGHT;
+        }
+        else if (direction.x < -0.5f)
+        {
+            currentDir = MoveDirection.LEFT;
+        }
+        else if (direction.y > 0.5f)
+        {
+            currentDir = MoveDirection.UP;
+        }
+        else if (direction.y < -0.5f)
+        {
+            currentDir = MoveDirection.DOWN;
+        }
+        //Debug.Log("Current Inputdir = " + direction + " Now facing: " + currentDir);
     }
 
     void Movement()
     {
-
-        Vector2 direction = new Vector2(this.transform.position.x, this.transform.position.y);
+        direction = new Vector2(this.transform.position.x, this.transform.position.y);
         direction = (targetPos - direction).normalized;
 
         rb.velocity = (direction * moveSpeed);
@@ -50,9 +71,6 @@ public class EnemyMovement : MonoBehaviour
                 currentLow = currentDis;
                 targetPos = i.transform.position;
             }
-
         }
-
-
     }
 }

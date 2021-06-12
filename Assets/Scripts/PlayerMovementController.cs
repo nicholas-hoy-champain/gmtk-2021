@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// handle simultaenous input in opposing directions
+
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] float maxSpeed;
@@ -50,7 +52,7 @@ public class PlayerMovementController : MonoBehaviour
             stance.currentDirection = MoveDirection.DOWN;
         }
 
-        Debug.Log("Current Inputdir = " + inputDir + " Now facing: " + stance.currentDirection);
+        //Debug.Log("Current Inputdir = " + inputDir + " Now facing: " + stance.currentDirection);
     }
 
     void CheckInput()
