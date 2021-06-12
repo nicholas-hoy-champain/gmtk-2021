@@ -13,7 +13,7 @@ public enum MoveDirection
     ERROR
 }
 
-public class AllyStance : MonoBehaviour
+public class AllyStatus : MonoBehaviour
 {
     static int CURRENT_MAX_ID = 0;
     public bool isPlayer = false;

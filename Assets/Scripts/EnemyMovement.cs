@@ -78,13 +78,13 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") )
         {
-            AllyStance stanceOfCollision = collision.gameObject.GetComponent<AllyStance>();
+            AllyStatus stanceOfCollision = collision.gameObject.GetComponent<AllyStatus>();
             stanceOfCollision.EndGame();
         }
 
         if (collision.gameObject.CompareTag("Ally"))
         {
-            AllyStance stanceOfCollision = collision.gameObject.GetComponent<AllyStance>();
+            AllyStatus stanceOfCollision = collision.gameObject.GetComponent<AllyStatus>();
             stanceOfCollision.KillAlly();
 
         }
