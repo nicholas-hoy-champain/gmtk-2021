@@ -5,16 +5,18 @@ using UnityEngine;
 // check every now and then, not every frame
 
 
-public class EnemyMovement : MonoBehaviour
+public class EnemySwordsmanMovement : MonoBehaviour
 {
     Vector2 targetPos;
     public float moveSpeed;
     Rigidbody2D rb;
     public MoveDirection currentDir;
     Vector2 direction;
+    Vector2 distance;
     public float secondsToWaitForKilling;
 
     bool isMoving = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -55,8 +57,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Movement()
     {
-        direction = new Vector2(this.transform.position.x, this.transform.position.y);
-        direction = (targetPos - direction).normalized;
+        direction = (targetPos - new Vector2(this.transform.position.x, this.transform.position.y));
+        direction = distance.normalized;
 
         rb.velocity = (direction * moveSpeed);
     }
@@ -81,7 +83,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ally") || collision.gameObject.CompareTag("Player"))
+        if ((collision.gameObject.CompareTag("Ally") || collision.gameObject.CompareTag("Player")))
         {
             AllyCombatStatus statusOfAlly = collision.gameObject.GetComponent<AllyCombatStatus>();
 

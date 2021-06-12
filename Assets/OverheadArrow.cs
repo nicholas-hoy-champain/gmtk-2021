@@ -67,17 +67,18 @@ public class OverheadArrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("ARROW HIT");
-
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ally"))
         {
             AllyCombatStatus statusOfAlly = collision.gameObject.GetComponent<AllyCombatStatus>();
 
-            if (statusOfAlly.isPlayer)
-                statusOfAlly.EndGame();
-            else
-                statusOfAlly.KillAlly();
-
+            if(!statusOfAlly.isShielding)
+            {
+                Debug.Log("ARROW HIT");
+                if (statusOfAlly.isPlayer)
+                    statusOfAlly.EndGame();
+                else
+                    statusOfAlly.KillAlly();
+            }
         }
     }
 }
