@@ -89,10 +89,10 @@ public class AllyEdgeDeterminer : MonoBehaviour
 
                 test = nextEnd - diff - 4;
 
-                Debug.Log("Data: " + index + " " + endIndexOfLayer + " " + diff + " " + nextEnd + " " + test + " " + count);
+                //Debug.Log("Data: " + index + " " + endIndexOfLayer + " " + diff + " " + nextEnd + " " + test + " " + count);
                 if (test >= count)
                 {
-                    Debug.LogError("Success: " + index);
+                    //Debug.LogError("Success: " + index);
                     switch (dir)
                     {
                         case 0:
