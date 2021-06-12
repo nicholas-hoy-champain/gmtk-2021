@@ -453,6 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 2
   force: 10
+  slowingLerpValue: 0.2
 --- !u!114 &1266179468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,4 +584,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9dfd846f544ec4eae9cc02c19326d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 1

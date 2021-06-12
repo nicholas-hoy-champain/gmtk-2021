@@ -8,6 +8,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] float force;
     [SerializeField] float slowingLerpValue;
 
+    AllyStance stance;
     Vector2 inputDir;
     Rigidbody2D rb;
 
@@ -15,17 +16,41 @@ public class PlayerMovementController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        stance = GetComponent<AllyStance>();
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckInput();
+        CheckDirection();
     }
 
     void FixedUpdate()
     {
         ChangeVelocity();
+    }
+
+    void CheckDirection()
+    {
+        if (inputDir.x > 0.5f)
+        {
+            stance.currentDirection = MoveDirection.RIGHT;
+        }
+        else if (inputDir.x < -0.5f)
+        {
+            stance.currentDirection = MoveDirection.LEFT;
+        }
+        else if (inputDir.y > 0.5f)
+        {
+            stance.currentDirection = MoveDirection.UP;
+        }
+        else if (inputDir.y < -0.5f)
+        {
+            stance.currentDirection = MoveDirection.DOWN;
+        }
+
+        Debug.Log("Current Inputdir = " + inputDir + " Now facing: " + stance.currentDirection);
     }
 
     void CheckInput()

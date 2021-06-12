@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// check every now and then, not every frame
+
+
 public class EnemyMovement : MonoBehaviour
 {
     Vector2 targetPos;
@@ -17,6 +20,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DetermineTarget();
 
 
         Movement();
@@ -24,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Movement()
     {
+
         Vector2 direction = new Vector2(this.transform.position.x, this.transform.position.y);
         direction = (targetPos - direction).normalized;
 
@@ -42,8 +47,12 @@ public class EnemyMovement : MonoBehaviour
 
             if (currentDis < currentLow)
             {
+                currentLow = currentDis;
+                targetPos = i.transform.position;
             }
 
         }
+
+
     }
 }
