@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   folderEntity: {fileID: 1857924662}
   placeHolder: {fileID: 1461381494655441673, guid: 0a59ea7e3b4e0ba4bba46694a2927b99, type: 3}
-  soliders: 30
+  soliders: 42
   size: 0.33333334
 --- !u!61 &1266179470
 BoxCollider2D:

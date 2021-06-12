@@ -69,9 +69,9 @@ public class GameManager : MonoBehaviour
 
             if (direction == 1)
                 offset = new Vector3(-offset.y, offset.x);
-            else if (direction == 2)
-                offset = new Vector3(offset.y, -offset.x);
             else if (direction == 3)
+                offset = new Vector3(offset.y, -offset.x);
+            else if (direction == 2)
                 offset = -offset;
 
             offsets.Add(offset * size);
