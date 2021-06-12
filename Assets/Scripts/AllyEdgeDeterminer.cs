@@ -24,7 +24,7 @@ public class AllyEdgeDeterminer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //CheckForEdge();
+        CheckForEdge();
         displayBoolCenter = center;
     }
 
