@@ -24,11 +24,11 @@ public class AllyEdgeDeterminer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckForEdge();
+        //CheckForEdge();
         displayBoolCenter = center;
     }
 
-    void CheckForEdge()
+    public void CheckForEdge()
     {
         count = transform.parent.childCount;
         index = transform.GetSiblingIndex();

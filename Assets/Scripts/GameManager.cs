@@ -11,24 +11,26 @@ public class GameManager : MonoBehaviour
     public GameObject allyFolder;
     [SerializeField] int soliders;
     [SerializeField] public float size;
+    public bool restructure;
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<Vector3> offsets;
 
     // Start is called before the first frame update
     void Start()
     {
         SetOffsets();
-        foreach(AllyLocationFollower e in GameObject.FindObjectsOfType<AllyLocationFollower>())
-        {
-            e.RetrieveOffset();
-        }
+        RestructureTheAllies();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (restructure)
+        {
+            RestructureTheAllies();
+            restructure = false;
+        }
     }
 
     private void OnConnectedToServer()
@@ -36,6 +38,19 @@ public class GameManager : MonoBehaviour
         
     }
 
+    void RestructureTheAllies()
+    {
+        foreach (AllyLocationFollower e in GameObject.FindObjectsOfType<AllyLocationFollower>())
+        {
+            e.RetrieveOffset();
+            //e.GetComponent<AllyEdgeDeterminer>().CheckForEdge();
+        }
+
+        foreach (AllyEdgeDeterminer e in GameObject.FindObjectsOfType<AllyEdgeDeterminer>())
+        {
+            e.CheckForEdge();
+        }
+    }
 
     void SetOffsets()
     {

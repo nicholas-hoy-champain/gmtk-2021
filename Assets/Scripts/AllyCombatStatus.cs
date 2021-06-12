@@ -89,6 +89,7 @@ public class AllyCombatStatus : MonoBehaviour
     {
         Debug.Log("Ally Died");
         GameManager.AllyRoster.Remove(this.gameObject);
+        GameObject.FindObjectOfType<GameManager>().restructure = true;
         GameObject.Destroy(this.gameObject);
     }
 
