@@ -65,13 +65,26 @@ public class CardinalArrow : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((collision.gameObject.CompareTag("Ally") || collision.gameObject.CompareTag("Player")))
         {
             AllyCombatStatus statusOfAlly = collision.gameObject.GetComponent<AllyCombatStatus>();
 
-            StartCoroutine(nameof(Kill), statusOfAlly);
+            if(statusOfAlly.isShielding)
+            {
+                MoveDirection successShieldDirection;
+                AllyCombatStatus.OppositeDirections.TryGetValue(flightDirection, out successShieldDirection);
+                if(successShieldDirection == statusOfAlly.currentDirection)
+                {
+                    Debug.Log("successfully blocked arrow");
+                    GameObject.Destroy(this.gameObject);
+                }
+                else
+                    StartCoroutine(nameof(Kill), statusOfAlly);
+            }
+            else
+                StartCoroutine(nameof(Kill), statusOfAlly);
         }
     }
 

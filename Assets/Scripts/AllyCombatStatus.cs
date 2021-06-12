@@ -13,6 +13,7 @@ public enum MoveDirection
     ERROR
 }
 
+
 public class AllyCombatStatus : MonoBehaviour
 {
     static int CURRENT_MAX_ID = 0;
@@ -20,6 +21,12 @@ public class AllyCombatStatus : MonoBehaviour
     public bool isShielding;
     public MoveDirection currentDirection = MoveDirection.ERROR;
     int id;
+    public static Dictionary<MoveDirection, MoveDirection> OppositeDirections = new Dictionary<MoveDirection, MoveDirection>()
+    {  { MoveDirection.DOWN, MoveDirection.UP},
+       { MoveDirection.UP, MoveDirection.DOWN},
+       { MoveDirection.LEFT, MoveDirection.RIGHT},
+       { MoveDirection.RIGHT, MoveDirection.LEFT} };
+
 
     [SerializeField] GameObject HandContainer;
     [SerializeField] GameObject Spear;
