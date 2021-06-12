@@ -85,7 +85,7 @@ public class EnemyMovement : MonoBehaviour
         {
             AllyCombatStatus statusOfAlly = collision.gameObject.GetComponent<AllyCombatStatus>();
 
-            StartCoroutine("Kill", statusOfAlly);
+            StartCoroutine(nameof(Kill), statusOfAlly);
         }
     }
 

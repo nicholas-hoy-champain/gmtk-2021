@@ -50,11 +50,11 @@ public class AllyCombatStatus : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            WeaponSwitch();
+            StanceSwitch();
         }
     }
 
-    void WeaponSwitch()
+    public void StanceSwitch()
     {
         Debug.Log("Ally switching stance");
         if (isShielding)
