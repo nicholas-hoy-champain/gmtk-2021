@@ -13,6 +13,8 @@ public class EnemyMovement : MonoBehaviour
     public MoveDirection currentDir;
     Vector2 direction;
 
+    bool isMoving = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,9 @@ public class EnemyMovement : MonoBehaviour
     {
         DetermineTarget();
         DetermineFacingDirection();
-        Movement();
+        
+        if (isMoving)
+            Movement();
     }
 
     void DetermineFacingDirection()
@@ -78,13 +82,13 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") )
         {
-            AllyStatus stanceOfCollision = collision.gameObject.GetComponent<AllyStatus>();
+            AllyCombatStatus stanceOfCollision = collision.gameObject.GetComponent<AllyCombatStatus>();
             stanceOfCollision.EndGame();
         }
 
         if (collision.gameObject.CompareTag("Ally"))
         {
-            AllyStatus stanceOfCollision = collision.gameObject.GetComponent<AllyStatus>();
+            AllyCombatStatus stanceOfCollision = collision.gameObject.GetComponent<AllyCombatStatus>();
             stanceOfCollision.KillAlly();
 
         }

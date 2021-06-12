@@ -13,7 +13,7 @@ public enum MoveDirection
     ERROR
 }
 
-public class AllyStatus : MonoBehaviour
+public class AllyCombatStatus : MonoBehaviour
 {
     static int CURRENT_MAX_ID = 0;
     public bool isPlayer = false;
@@ -21,7 +21,9 @@ public class AllyStatus : MonoBehaviour
     public MoveDirection currentDirection = MoveDirection.ERROR;
     int id;
 
-    [SerializeField] GameObject SpearContainer;
+    [SerializeField] GameObject HandContainer;
+    [SerializeField] GameObject Spear;
+    [SerializeField] GameObject Shield;
 
 
     // Start is called before the first frame update
@@ -36,7 +38,7 @@ public class AllyStatus : MonoBehaviour
     {
         if(isPlayer)
         {
-            CheckForWeaponSwitch();
+            CheckForPlayerWeaponSwitch();
         }
         else
         {
@@ -44,12 +46,30 @@ public class AllyStatus : MonoBehaviour
         }
     }
 
-    void CheckForWeaponSwitch()
+    void CheckForPlayerWeaponSwitch()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Player switching stance");
-            isShielding = !isShielding;
+            WeaponSwitch();
+        }
+    }
+
+    void WeaponSwitch()
+    {
+        Debug.Log("Ally switching stance");
+        if (isShielding)
+        {
+            Debug.Log("switching to spear");
+            Shield.SetActive(false);
+            Spear.SetActive(true);
+            isShielding = false;
+        }
+        else
+        {
+            Debug.Log("switching to shield");
+            Shield.SetActive(true);
+            Spear.SetActive(false);
+            isShielding = true;
         }
     }
 
@@ -72,22 +92,22 @@ public class AllyStatus : MonoBehaviour
             {
                 case MoveDirection.UP:
                 {
-                    SpearContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);      
+                    HandContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);      
                     break;
                 }
                 case MoveDirection.DOWN:
                 {
-                    SpearContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, -90.0f);
+                    HandContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, -90.0f);
                     break;
                 }
                 case MoveDirection.LEFT:
                 {
-                    SpearContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
+                    HandContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
                     break;
                 }
                 case MoveDirection.RIGHT:
                 {
-                    SpearContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                    HandContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                     break;
                 }
             }

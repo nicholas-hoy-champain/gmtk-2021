@@ -10,7 +10,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] float force;
     [SerializeField] float slowingLerpValue;
 
-    AllyStatus stance;
+    AllyCombatStatus stance;
     Vector2 inputDir;
     Rigidbody2D rb;
 
@@ -18,7 +18,7 @@ public class PlayerMovementController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        stance = GetComponent<AllyStatus>();
+        stance = GetComponent<AllyCombatStatus>();
     }
 
     // Update is called once per frame

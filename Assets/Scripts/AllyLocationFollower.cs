@@ -35,7 +35,7 @@ public class AllyLocationFollower : MonoBehaviour
         //Intended Offset
         if(gameManager.allyFolder.transform.childCount <= 5)
         {
-            switch(player.GetComponent<AllyStatus>().currentDirection)
+            switch(player.GetComponent<AllyCombatStatus>().currentDirection)
             {
                 case MoveDirection.UP:
                     intendedOffset = offset;
