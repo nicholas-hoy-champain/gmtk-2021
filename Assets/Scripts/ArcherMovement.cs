@@ -24,6 +24,7 @@ public class ArcherMovement : MonoBehaviour
     float distance;
     Vector2 direction;
     float delayBetweenNextShot;
+    [SerializeField] MoveDirection facingDirection;
     
 
     void OnDrawGizmosSelected()
@@ -55,41 +56,49 @@ public class ArcherMovement : MonoBehaviour
 
     void DetermineFacingDirection()
     {
-            //if (direction.x > 0.5f)
-            //{
-            //    currentDir = MoveDirection.RIGHT;
-            //}
-            //else if (direction.x < -0.5f)
-            //{
-            //    currentDir = MoveDirection.LEFT;
-            //}
-            //else if (direction.y > 0.5f)
-            //{
-            //    currentDir = MoveDirection.UP;
-            //}
-            //else if (direction.y < -0.5f)
-            //{
-            //    currentDir = MoveDirection.DOWN;
-            //}
-            ////Debug.Log("Current Inputdir = " + direction + " Now facing: " + currentDir);
+        if (direction.x > 0.5f)
+        {
+            facingDirection = MoveDirection.RIGHT;
+        }
+        else if (direction.x < -0.5f)
+        {
+            facingDirection = MoveDirection.LEFT;
+        }
+        else if (direction.y > 0.5f)
+        {
+            facingDirection = MoveDirection.UP;
+        }
+        else if (direction.y < -0.5f)
+        {
+            facingDirection = MoveDirection.DOWN;
+        }
+
+        if (isAttacking)
+            direction = (captain.transform.position - transform.position).normalized;
+        //Debug.Log("Current Inputdir = " + direction + " Now facing: " + currentDir);
     }
 
     void DetermineAction()
     {
         distance = Vector2.Distance(transform.position, captain.transform.position);
 
-        if (minDesiredDistanceFromPlayer > distance)
-        {
-            direction = (captain.transform.position - transform.position).normalized;
-            isAttacking = false;
-        }
-        else if (maxDesiredDistanceFromPlayer < distance)
+        if (distance < minDesiredDistanceFromPlayer)
         {
             direction = (transform.position - captain.transform.position).normalized;
             isAttacking = false;
+            Debug.Log("Getting further away");
+        }
+        else if (distance > maxDesiredDistanceFromPlayer)
+        {
+            direction = (captain.transform.position - transform.position).normalized;
+            isAttacking = false;
+            Debug.Log("Getting closer");
+
         }
         else // attack
         {
+            Debug.Log("Attacking");
+
             isAttacking = true;
         }
     }
@@ -110,7 +119,8 @@ public class ArcherMovement : MonoBehaviour
         Debug.Log("Firing a cardinal arrow");
         delayBetweenNextShot = Random.Range(baseDurationBetweenArrows - durationNoise, baseDurationBetweenArrows + durationNoise);
 
-        GameObject.Instantiate(arrowPrefab, this.transform.position, Quaternion.identity);
+        GameObject theArrow = GameObject.Instantiate(arrowPrefab, this.transform.position, Quaternion.identity);
+        theArrow.GetComponent<CardinalArrow>().ChangeDirection(facingDirection);
 
         StartCoroutine(nameof(WaitForDelay));
     }
@@ -120,5 +130,11 @@ public class ArcherMovement : MonoBehaviour
         waitingForDelay = true;
         yield return new WaitForSeconds(delayBetweenNextShot);
         waitingForDelay = false;
+    }
+
+    public void Die()
+    {
+        Debug.Log("Enemy died");
+        GameObject.Destroy(this.gameObject);
     }
 }

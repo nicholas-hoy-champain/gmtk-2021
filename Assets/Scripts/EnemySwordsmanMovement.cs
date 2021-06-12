@@ -12,7 +12,6 @@ public class EnemySwordsmanMovement : MonoBehaviour
     Rigidbody2D rb;
     public MoveDirection currentDir;
     Vector2 direction;
-    Vector2 distance;
     public float secondsToWaitForKilling;
 
     bool isMoving = true;
@@ -57,8 +56,8 @@ public class EnemySwordsmanMovement : MonoBehaviour
 
     void Movement()
     {
-        direction = (targetPos - new Vector2(this.transform.position.x, this.transform.position.y));
-        direction = distance.normalized;
+        direction = (targetPos - (Vector2)this.transform.position);
+        direction = direction.normalized;
 
         rb.velocity = (direction * moveSpeed);
     }

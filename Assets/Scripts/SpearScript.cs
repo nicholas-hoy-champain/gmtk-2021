@@ -20,7 +20,10 @@ public class SpearScript : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemySwordsmanMovement>().Die();
+            if (collision.GetComponent<EnemySwordsmanMovement>())
+                collision.GetComponent<EnemySwordsmanMovement>().Die();
+            else
+                collision.GetComponent<ArcherMovement>().Die();
         }
     }
 }

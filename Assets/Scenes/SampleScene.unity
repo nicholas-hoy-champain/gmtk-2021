@@ -968,7 +968,7 @@ MonoBehaviour:
   baseDurationBetweenArrows: 3
   durationNoise: 2
   maxNumOfArrowsAtOneTime: 3
-  overheadArrowPrefab: {fileID: 2263180907651550959, guid: 0b885aa3f0c39f04e8b0dd0d06574249, type: 3}
+  overheadArrowPrefab: {fileID: 2263180907651550959, guid: 18d2a53576d86554ca63b5b1a452a1f6, type: 3}
   currentNumOfArrows: 0
 --- !u!1 &1266179463
 GameObject:
@@ -1362,14 +1362,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8752fbe37d942542a874eee980f1986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 0}
+  arrowPrefab: {fileID: 864783397}
   maxDistanceColor: {r: 0.14526828, g: 0.6886792, b: 0, a: 1}
-  maxDesiredDistanceFromPlayer: 2.04
+  maxDesiredDistanceFromPlayer: 7
   minDistanceColor: {r: 0, g: 1, b: 0.003921569, a: 1}
-  minDesiredDistanceFromPlayer: 4.48
+  minDesiredDistanceFromPlayer: 3
   baseDurationBetweenArrows: 4
   durationNoise: 1
-  moveSpeed: 2
+  moveSpeed: 1.2
+  facingDirection: 0
 --- !u!50 &1373787973
 Rigidbody2D:
   serializedVersion: 4
