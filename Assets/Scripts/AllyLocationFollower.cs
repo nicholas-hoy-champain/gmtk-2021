@@ -97,4 +97,9 @@ public class AllyLocationFollower : MonoBehaviour
         //Debug.Log(offset);
         //.allyFolder.transform.GetChild()
     }
+
+    public void StopMoving()
+    {
+        Debug.Log("Ally stopped moving");
+    }
 }

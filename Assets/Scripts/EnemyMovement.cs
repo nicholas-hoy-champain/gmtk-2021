@@ -12,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
     Rigidbody2D rb;
     public MoveDirection currentDir;
     Vector2 direction;
+    public float secondsToWaitForKilling;
 
     bool isMoving = true;
 
@@ -80,18 +81,26 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") )
+        if (collision.gameObject.CompareTag("Ally") || collision.gameObject.CompareTag("Player"))
         {
-            AllyCombatStatus stanceOfCollision = collision.gameObject.GetComponent<AllyCombatStatus>();
-            stanceOfCollision.EndGame();
-        }
+            AllyCombatStatus statusOfAlly = collision.gameObject.GetComponent<AllyCombatStatus>();
 
-        if (collision.gameObject.CompareTag("Ally"))
-        {
-            AllyCombatStatus stanceOfCollision = collision.gameObject.GetComponent<AllyCombatStatus>();
-            stanceOfCollision.KillAlly();
-
+            StartCoroutine("Kill", statusOfAlly);
         }
+    }
+
+    IEnumerator Kill(AllyCombatStatus killee)
+    {
+        isMoving = false;
+        
+        yield return new WaitForSeconds(secondsToWaitForKilling);
+
+        if (killee.isPlayer)
+            killee.EndGame();
+        else
+            killee.KillAlly();
+
+        isMoving = true;
     }
 
     public void Die()
