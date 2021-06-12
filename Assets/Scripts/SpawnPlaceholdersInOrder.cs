@@ -11,7 +11,7 @@ public class SpawnPlaceholdersInOrder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetOffsets();
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class SpawnPlaceholdersInOrder : MonoBehaviour
 
     void SetOffsets()
     {
-        Vector2 offset = Vector2.zero;
+        Vector3 offset = Vector3.zero;
         int layer = 1, direction = 0, shift = 0,  layerFill = 0, layerSize = 8;
 
         float xShift;
@@ -50,15 +50,16 @@ public class SpawnPlaceholdersInOrder : MonoBehaviour
             offset.y = layer;
 
             if (direction == 1)
-                offset = new Vector2(offset.y, -offset.x);
+                offset = new Vector3(-offset.y, offset.x);
             else if (direction == 2)
-                offset = new Vector2(-offset.y, offset.x);
+                offset = new Vector3(offset.y, -offset.x);
             else if (direction == 3)
                 offset = -offset;
 
-            Instantiate(placeHolder, transform.position, Quaternion.identity);
+            Instantiate(placeHolder, transform.position + offset * size, Quaternion.identity);
 
             direction++;
+            layerFill++;
         }
     }
 }
