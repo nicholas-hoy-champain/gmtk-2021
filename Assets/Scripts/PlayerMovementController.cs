@@ -6,6 +6,7 @@ public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] float maxSpeed;
     [SerializeField] float force;
+    [SerializeField] float slowingLerpValue;
 
     Vector2 inputDir;
     Rigidbody2D rb;
@@ -44,7 +45,12 @@ public class PlayerMovementController : MonoBehaviour
     {
         //rb.velocity = inputDir * speed;
         rb.AddForce(inputDir * force);
-        if(rb.velocity.sqrMagnitude > maxSpeed * maxSpeed)
+
+        if (inputDir == Vector2.zero)
+        {
+            rb.velocity = rb.velocity.normalized * Mathf.Lerp(rb.velocity.magnitude, 0, slowingLerpValue);
+        }
+        else if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed)
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
