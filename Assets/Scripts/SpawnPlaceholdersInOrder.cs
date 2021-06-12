@@ -8,6 +8,9 @@ public class SpawnPlaceholdersInOrder : MonoBehaviour
     [SerializeField] int soliders;
     [SerializeField] float size;
 
+    [HideInInspector]
+    public List<Vector3> offsets;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +59,7 @@ public class SpawnPlaceholdersInOrder : MonoBehaviour
             else if (direction == 3)
                 offset = -offset;
 
+            offsets.Add(offset);
             Instantiate(placeHolder, transform.position + offset * size, Quaternion.identity);
 
             direction++;
