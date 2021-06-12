@@ -8,6 +8,7 @@ public class CardinalArrow : MonoBehaviour
     [SerializeField] float flightSpeed;
     public MoveDirection flightDirection = MoveDirection.LEFT;
     Rigidbody2D rb;
+    public float secondsToWaitForKilling;
 
     // Start is called before the first frame update
     void Start()
@@ -62,5 +63,27 @@ public class CardinalArrow : MonoBehaviour
                 gmObj.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
                 break;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((collision.gameObject.CompareTag("Ally") || collision.gameObject.CompareTag("Player")))
+        {
+            AllyCombatStatus statusOfAlly = collision.gameObject.GetComponent<AllyCombatStatus>();
+
+            StartCoroutine(nameof(Kill), statusOfAlly);
+        }
+    }
+
+    IEnumerator Kill(AllyCombatStatus killee)
+    {
+        yield return new WaitForSeconds(secondsToWaitForKilling);
+
+        if (killee.isPlayer)
+            killee.EndGame();
+        else
+            killee.KillAlly();
+
+        GameObject.Destroy(this.gameObject);
     }
 }
