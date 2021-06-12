@@ -16,6 +16,11 @@ public class AllyLocationFollower : MonoBehaviour
     [SerializeField] float delayPerUnitOfDistance;
     [SerializeField] float timeRealizing = 0;
     [SerializeField] float timeRealizingStart = 0;
+
+    float reactionBoon;
+
+    float speed = 0;
+
     public bool isMoving = true;
 
     private void Awake()
@@ -26,6 +31,7 @@ public class AllyLocationFollower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        reactionBoon = Random.Range(.9f, 1.1f);
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -64,21 +70,20 @@ public class AllyLocationFollower : MonoBehaviour
             intendedOffset = offset;
         }
 
-        intendedOffset = offset;
-
         // Test for distance to
         Vector3 idealPosition = player.transform.position + intendedOffset;
         float distance = (idealPosition - transform.position).magnitude;
 
-        float speed = 0;
 
-        if(!needsToApproach && distance > 0.05f)
+        float accecptableDistance = 0.025f;
+
+        if(!needsToApproach && distance > accecptableDistance)
         {
-            timeRealizing = delayPerUnitOfDistance * (transform.position - player.transform.position).magnitude;
+            timeRealizing = delayPerUnitOfDistance * (transform.position - player.transform.position).magnitude * reactionBoon;
             timeRealizingStart = timeRealizing;
             needsToApproach = true;
         }
-        else if(needsToApproach && distance < 0.05f)
+        else if(needsToApproach && distance < accecptableDistance && player.GetComponent<Rigidbody2D>().velocity.sqrMagnitude < .1f)
         {
             needsToApproach = false;
             rb.velocity = Vector2.zero;
@@ -91,10 +96,33 @@ public class AllyLocationFollower : MonoBehaviour
             }
             speed = Mathf.Lerp(maxSpeed, 0, timeRealizing / timeRealizingStart);
 
-            rb.velocity = (idealPosition - transform.position).normalized * speed;
+            //rb.velocity = (idealPosition - transform.position).normalized * speed;
+            //
+            //if(distance < speed * Time.deltaTime)
+            //{
+            //    rb.velocity = Vector2.zero;
+            //    transform.position = idealPosition;
+            //}
         }
 
 
+    }
+
+    private void FixedUpdate()
+    {
+        if (needsToApproach)
+        {
+            Vector3 idealPosition = player.transform.position + intendedOffset;
+            float distance = (idealPosition - transform.position).magnitude;
+
+            rb.velocity = (idealPosition - transform.position).normalized * speed;
+
+            if (distance < speed * Time.fixedDeltaTime)
+            {
+                rb.velocity = Vector2.zero;
+                transform.position = idealPosition;
+            }
+        }
     }
 
     public void RetrieveOffset()
