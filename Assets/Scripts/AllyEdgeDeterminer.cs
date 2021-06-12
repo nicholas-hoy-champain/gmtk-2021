@@ -13,9 +13,12 @@ public class AllyEdgeDeterminer : MonoBehaviour
 
     [SerializeField] int count, index, layer, totalLayers, filledLayers, endIndexOfLayer;
 
+    GameObject gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.FindObjectOfType<GameManager>().gameObject;
     }
 
     // Update is called once per frame
@@ -90,9 +93,12 @@ public class AllyEdgeDeterminer : MonoBehaviour
                 test = nextEnd - diff - 4;
 
                 //Debug.Log("Data: " + index + " " + endIndexOfLayer + " " + diff + " " + nextEnd + " " + test + " " + count);
-                if (test >= count)
+
+                if (test >= count) //Means the corner has an uncovered side, and it adds the bool
                 {
+
                     //Debug.LogError("Success: " + index);
+
                     switch (dir)
                     {
                         case 0:
@@ -119,20 +125,88 @@ public class AllyEdgeDeterminer : MonoBehaviour
         {
             case 0:
                 top = true;
-                if (index + 4 > endIndexOfLayer) right = true;
+                if (index + 4 > endIndexOfLayer)
+                {
+                    right = true;
+                }
+                else
+                {
+                    if (!FindOffset(1, 0))
+                    {
+                        right = true;
+                    }
+                    if (!FindOffset(-1, 0))
+                    {
+                        left = true;
+                    }
+                }
                 break;
             case 1:
                 left = true;
-                if (index + 4 > endIndexOfLayer) top = true;
+                if (index + 4 > endIndexOfLayer)
+                {
+                    top = true;
+                }
+                else
+                {
+                    if (!FindOffset(0, 1))
+                    {
+                        top = true;
+                    }
+                    if (!FindOffset(0, -1))
+                    {
+                        bottom = true;
+                    }
+                }
                 break;
             case 3:
                 right = true;
-                if (index + 4 > endIndexOfLayer) bottom = true;
+                if (index + 4 > endIndexOfLayer)
+                {
+                    bottom = true;
+                }
+                else
+                {
+                    if (!FindOffset(0, 1))
+                    {
+                        top = true;
+                    }
+                    if (!FindOffset(0, -1))
+                    {
+                        bottom = true;
+                    }
+                }
                 break;
             case 2:
                 bottom = true;
-                if (index + 4 > endIndexOfLayer) left = true;
+                if (index + 4 > endIndexOfLayer)
+                { 
+                    left = true; 
+                }
+                else
+                {
+                    if (!FindOffset(1, 0))
+                    {
+                        right = true;
+                    }
+                    if (!FindOffset(-1, 0))
+                    {
+                        left = true;
+                    }
+                }
                 break;
         }
+    }
+
+    bool FindOffset(int x, int y)
+    {
+        List<Vector3> offsets = gameManager.GetComponent<GameManager>().offsets;
+        float size = gameManager.GetComponent<GameManager>().size;
+        Vector3 ideal = offsets[transform.GetSiblingIndex()] + new Vector3(x,y)*size;
+        for(int i = endIndexOfLayer + 1 - layer * 8; i < count; i++)
+        {
+            if (offsets[i] == ideal) return true;
+        }
+        return false;
     }
 }
