@@ -73,4 +73,20 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") )
+        {
+            AllyStance stanceOfCollision = collision.gameObject.GetComponent<AllyStance>();
+            stanceOfCollision.EndGame();
+        }
+
+        if (collision.gameObject.CompareTag("Ally"))
+        {
+            AllyStance stanceOfCollision = collision.gameObject.GetComponent<AllyStance>();
+            stanceOfCollision.KillAlly();
+
+        }
+    }
 }
