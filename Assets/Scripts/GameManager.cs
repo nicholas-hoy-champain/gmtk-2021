@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
         float xShift;
 
-        for (int i = 0; i < soliders; i++)
+        for (int i = 0; i < MAX_ALLYNUM; i++)
         {
             if (layerFill == layerSize)
             {

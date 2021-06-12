@@ -16,6 +16,7 @@ public class AllyLocationFollower : MonoBehaviour
     [SerializeField] float delayPerUnitOfDistance;
     [SerializeField] float timeRealizing = 0;
     [SerializeField] float timeRealizingStart = 0;
+    public bool isMoving = true;
 
     private void Awake()
     {
@@ -32,6 +33,13 @@ public class AllyLocationFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!isMoving)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
+
         //Intended Offset
         if(gameManager.allyFolder.transform.childCount <= 5)
         {
@@ -91,15 +99,12 @@ public class AllyLocationFollower : MonoBehaviour
 
     public void RetrieveOffset()
     {
-        //Debug.Log(transform.parent.childCount - transform.GetSiblingIndex() - 1);
-        offset = gameManager.offsets[transform.parent.childCount - 1 - transform.GetSiblingIndex()];
         offset = gameManager.offsets[transform.GetSiblingIndex()];
-        //Debug.Log(offset);
-        //.allyFolder.transform.GetChild()
     }
 
     public void StopMoving()
     {
         Debug.Log("Ally stopped moving");
+        isMoving = false;
     }
 }
