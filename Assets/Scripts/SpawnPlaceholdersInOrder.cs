@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class SpawnPlaceholdersInOrder : MonoBehaviour
 {
+    public Transform folderEntity;
     public GameObject placeHolder;
     [SerializeField] int soliders;
     [SerializeField] float size;
 
-    [HideInInspector]
-    public List<Vector3> offsets;
-
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         SetOffsets();
     }
@@ -59,8 +57,7 @@ public class SpawnPlaceholdersInOrder : MonoBehaviour
             else if (direction == 3)
                 offset = -offset;
 
-            offsets.Add(offset);
-            Instantiate(placeHolder, transform.position + offset * size, Quaternion.identity);
+            Instantiate(placeHolder, transform.position + offset * size, Quaternion.identity, folderEntity);
 
             direction++;
             layerFill++;
