@@ -77,6 +77,8 @@ public class AllyLocationFollower : MonoBehaviour
 
         float accecptableDistance = 0.025f;
 
+
+
         if(!needsToApproach && distance > accecptableDistance)
         {
             timeRealizing = delayPerUnitOfDistance * (transform.position - player.transform.position).magnitude * reactionBoon;
@@ -94,6 +96,12 @@ public class AllyLocationFollower : MonoBehaviour
             {
                 timeRealizing -= Time.deltaTime;
             }
+
+            if(timeRealizing < timeRealizingStart * .5f && player.GetComponent<AllyCombatStatus>().currentDirection != GetComponent<AllyCombatStatus>().currentDirection)
+            {
+                timeRealizing = Mathf.Min(timeRealizing + Time.deltaTime * 2, timeRealizingStart * .5f);
+            }
+
             speed = Mathf.Lerp(maxSpeed, 0, timeRealizing / timeRealizingStart);
 
             //rb.velocity = (idealPosition - transform.position).normalized * speed;
@@ -117,7 +125,7 @@ public class AllyLocationFollower : MonoBehaviour
 
             rb.velocity = (idealPosition - transform.position).normalized * speed;
 
-            if (distance < speed * Time.fixedDeltaTime)
+            if (distance < speed * Time.fixedDeltaTime && player.GetComponent<AllyCombatStatus>().currentDirection == GetComponent<AllyCombatStatus>().currentDirection)
             {
                 rb.velocity = Vector2.zero;
                 transform.position = idealPosition;
