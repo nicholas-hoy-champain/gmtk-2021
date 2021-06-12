@@ -21,6 +21,8 @@ public class AllyStatus : MonoBehaviour
     public MoveDirection currentDirection = MoveDirection.ERROR;
     int id;
 
+    [SerializeField] GameObject SpearContainer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,5 +61,36 @@ public class AllyStatus : MonoBehaviour
     public void KillAlly()
     {
         Debug.Log("Ally Died");
+    }
+
+    public void ChangeDirection(MoveDirection newDirection)
+    {
+        if(newDirection != currentDirection)
+        {
+            currentDirection = newDirection;
+            switch(newDirection)
+            {
+                case MoveDirection.UP:
+                {
+                    SpearContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);      
+                    break;
+                }
+                case MoveDirection.DOWN:
+                {
+                    SpearContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, -90.0f);
+                    break;
+                }
+                case MoveDirection.LEFT:
+                {
+                    SpearContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
+                    break;
+                }
+                case MoveDirection.RIGHT:
+                {
+                    SpearContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                    break;
+                }
+            }
+        }
     }
 }

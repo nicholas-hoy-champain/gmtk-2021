@@ -37,19 +37,19 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (inputDir.x > 0.5f)
         {
-            stance.currentDirection = MoveDirection.RIGHT;
+            stance.ChangeDirection(MoveDirection.RIGHT);
         }
         else if (inputDir.x < -0.5f)
         {
-            stance.currentDirection = MoveDirection.LEFT;
+            stance.ChangeDirection(MoveDirection.LEFT);
         }
         else if (inputDir.y > 0.5f)
         {
-            stance.currentDirection = MoveDirection.UP;
+            stance.ChangeDirection(MoveDirection.UP);
         }
         else if (inputDir.y < -0.5f)
         {
-            stance.currentDirection = MoveDirection.DOWN;
+            stance.ChangeDirection(MoveDirection.DOWN);
         }
 
         //Debug.Log("Current Inputdir = " + inputDir + " Now facing: " + stance.currentDirection);

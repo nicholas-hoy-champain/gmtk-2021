@@ -89,4 +89,10 @@ public class EnemyMovement : MonoBehaviour
 
         }
     }
+
+    public void Die()
+    {
+        Debug.Log("Enemy died");
+        GameObject.Destroy(this.gameObject);
+    }
 }
