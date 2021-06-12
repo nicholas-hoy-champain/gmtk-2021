@@ -49,7 +49,29 @@ public class ArcherMovement : MonoBehaviour
     void Update()
     {
         DetermineAction();
+        DetermineFacingDirection();
         ExecuteAction();
+    }
+
+    void DetermineFacingDirection()
+    {
+            //if (direction.x > 0.5f)
+            //{
+            //    currentDir = MoveDirection.RIGHT;
+            //}
+            //else if (direction.x < -0.5f)
+            //{
+            //    currentDir = MoveDirection.LEFT;
+            //}
+            //else if (direction.y > 0.5f)
+            //{
+            //    currentDir = MoveDirection.UP;
+            //}
+            //else if (direction.y < -0.5f)
+            //{
+            //    currentDir = MoveDirection.DOWN;
+            //}
+            ////Debug.Log("Current Inputdir = " + direction + " Now facing: " + currentDir);
     }
 
     void DetermineAction()
