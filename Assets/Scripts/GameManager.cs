@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static List<GameObject> AllyRoster = new List<GameObject>();
     public GameObject allyFolder;
     [SerializeField] int soliders;
-    [SerializeField] float size;
+    [SerializeField] public float size;
 
     [HideInInspector]
     public List<Vector3> offsets;
