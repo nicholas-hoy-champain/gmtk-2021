@@ -411,9 +411,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Donovan Garcia-Buckler: Producer\r\nAaron Pastor: Designer\r\nAllyson
+  m_text: "Donovan Garcia-Buckler: Producer\r\nAaron Pastor: Designer \r/ SFX\nAllyson
     Lee: Artist / Animator\r\nLillian Clark: Artist / Animator\r\nBrandon Boras:
-    Programmer\r\nNicholas Perell: Programmer\r"
+    Programmer\r\nNicholas Perell: Programmer\r\n\n\"Battle Theme A\" from pixelsphere.org\n\"Swordfight\"
+    by Kistol"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 25680aa17dd78e2449bf01e335c27e53, type: 2}
   m_sharedMaterial: {fileID: 974157766766454454, guid: 25680aa17dd78e2449bf01e335c27e53, type: 2}
