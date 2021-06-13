@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
         {
             e.CheckForEdge();
         }
+
+        HUDmanager.ChangeSoliderNumber(allyFolder.transform.childCount);
     }
 
     void SetOffsets()

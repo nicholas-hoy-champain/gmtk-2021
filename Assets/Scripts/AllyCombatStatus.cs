@@ -44,6 +44,7 @@ public class AllyCombatStatus : MonoBehaviour
         health = maxHealth;
         GameManager.AllyRoster.Add(this.gameObject);
         id = ++CURRENT_MAX_ID;
+        HUDmanager.ChangeStanceIcon(isShielding);
     }
 
     // Update is called once per frame
@@ -84,6 +85,7 @@ public class AllyCombatStatus : MonoBehaviour
             Spear.SetActive(false);
             isShielding = true;
         }
+        HUDmanager.ChangeStanceIcon(isShielding);
     }
 
     public void DamagePlayer(int damage)
