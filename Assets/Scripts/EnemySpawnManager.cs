@@ -74,6 +74,9 @@ public class EnemySpawnManager : MonoBehaviour
     IEnumerator WaitForWaveAnnouncement()
     {
         yield return new WaitForSeconds(HUDmanager.timeWaveTextShows);
+
+        Debug.Log("Scale up the max nums between waves here");
+
         numOfArchersSpawnedThisWave = 0;
         numOfSwordsmenSpawnedThisWave = 0;
         isWaitingForNextWave = false;
