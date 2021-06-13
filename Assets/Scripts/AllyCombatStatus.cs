@@ -37,6 +37,8 @@ public class AllyCombatStatus : MonoBehaviour
     [SerializeField] public float maxHealth;
     [SerializeField] public float endGameMaxHealth;
 
+    [SerializeField] AudioSource audsrcAllyDamage;
+    [SerializeField] AudioSource audsrcPlayerDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -90,10 +92,18 @@ public class AllyCombatStatus : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
+        if (audsrcAllyDamage == null)
+            Debug.LogError("AudioSourceBroken");
+        else
+            audsrcAllyDamage.Play();
         health -= damage;
         if (health < 1)
         {
             Debug.Log("Player Died");
+            if (audsrcPlayerDeath == null)
+                Debug.LogError("AudioSourceBroken");
+            else
+                audsrcPlayerDeath.Play();
             StatManager.SaveToPlayePrefs();
             UnityEngine.SceneManagement.SceneManager.LoadScene(2);
         }
@@ -101,6 +111,10 @@ public class AllyCombatStatus : MonoBehaviour
 
     public void DamageAlly(int damage)
     {
+        if (audsrcAllyDamage == null)
+            Debug.LogError("AudioSourceBroken");
+        else
+            audsrcAllyDamage.Play();
         health -= damage;
         if (health < 1)
         {

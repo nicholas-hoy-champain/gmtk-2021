@@ -110,8 +110,6 @@ public class EnemySpawnManager : MonoBehaviour
             totalArchersInWave = (int)(totalArchersInWave * postWave6ArcherMultiplier);
             totalSwordsmanInWave = (int)(totalSwordsmanInWave * postWave6SwordsmanMultiplier);
         }
-
-        
         
         totalArchersInWave += additionalArchersPerWave;
         totalSwordsmanInWave += additionalSwordsmanPerWave;

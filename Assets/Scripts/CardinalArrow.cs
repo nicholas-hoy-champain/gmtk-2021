@@ -6,6 +6,8 @@ public class CardinalArrow : MonoBehaviour
 {
 
     [SerializeField] float flightSpeed;
+    [SerializeField] AudioSource audSrcBlockedArrow;
+
     public MoveDirection flightDirection = MoveDirection.LEFT;
     Rigidbody2D rb;
     public float secondsToWaitForKilling;
@@ -78,6 +80,7 @@ public class CardinalArrow : MonoBehaviour
                 if(successShieldDirection == statusOfAlly.currentDirection)
                 {
                     Debug.Log("successfully blocked arrow");
+                    audSrcBlockedArrow.Play();
                     GameObject.Destroy(this.gameObject);
                 }
                 else
