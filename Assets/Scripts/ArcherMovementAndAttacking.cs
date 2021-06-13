@@ -118,10 +118,13 @@ public class ArcherMovementAndAttacking : MonoBehaviour
         else if (!isAttacking)
         {
             this.GetComponent<Rigidbody2D>().velocity = (direction * moveSpeed);
+            anim.SetFloat("speed", this.GetComponent<Rigidbody2D>().velocity.magnitude);
         }
     }
     void FireArrow()
     {
+        anim.SetTrigger("fire");
+
         delayBetweenNextShot = Random.Range(baseDurationBetweenArrows - durationNoise, baseDurationBetweenArrows + durationNoise);
 
         GameObject theArrow = GameObject.Instantiate(arrowPrefab, this.transform.position, Quaternion.identity);
