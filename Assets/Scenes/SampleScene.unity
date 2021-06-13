@@ -894,6 +894,9 @@ MonoBehaviour:
   HandContainer: {fileID: 1014216795}
   Spear: {fileID: 534092192}
   Shield: {fileID: 424324347}
+  health: 0
+  maxHealth: 0
+  endGameMaxHealth: 0
 --- !u!114 &1266179469
 MonoBehaviour:
   m_ObjectHideFlags: 0

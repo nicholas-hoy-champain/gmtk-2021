@@ -19,6 +19,10 @@ public class AllyEdgeDeterminer : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindObjectOfType<GameManager>().gameObject;
+        if(!gameManager)
+        {
+            Debug.Log("gamemanager no exist");
+        }
     }
 
     // Update is called once per frame
