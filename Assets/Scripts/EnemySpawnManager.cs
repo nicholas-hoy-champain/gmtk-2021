@@ -59,6 +59,11 @@ public class EnemySpawnManager : MonoBehaviour
         {
             // wave done
             Debug.Log("Wave done");
+
+            /*
+             * currentWave++;
+             * HUDmanager.AnnounceWave(currentWave);
+             */
         }
     }
 

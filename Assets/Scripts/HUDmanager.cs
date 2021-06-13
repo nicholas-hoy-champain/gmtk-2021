@@ -16,11 +16,14 @@ public class HUDmanager : MonoBehaviour
     public static TextMeshProUGUI soliderNumberText;
     public static float timeWaveTextShows;
 
+    public static HUDmanager instance;
+
     int waveNumber;
 
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         timeWaveTextShows = timeWave;
         shieldIcon = shield;
         spearIcon = spear;
@@ -55,10 +58,10 @@ public class HUDmanager : MonoBehaviour
         }
     }
 
-    public void AnnounceWave(int i)
+    public static void AnnounceWave(int i)
     {
-        waveNumber = i;
-        StartCoroutine(nameof(MessageTimed));
+        instance.waveNumber = i;
+        instance.StartCoroutine(nameof(MessageTimed));
     }
 
     IEnumerator MessageTimed()
