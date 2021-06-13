@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 720446233b143724ea7a6d6d32ef87e1
+guid: 236302f478967414a98c2ff6317674fb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1519339885070413531
-    second: soldier_attack_right_01_0
+      213: 1270221745663901109
+    second: soldier_attack_back_01_0
   - first:
-      213: -5333578121115709020
-    second: soldier_attack_right_01_1
+      213: -3760102548814096539
+    second: soldier_attack_back_01_1
   - first:
-      213: 8568324366867747182
-    second: soldier_attack_right_01_2
+      213: 4056445768205828619
+    second: soldier_attack_back_01_2
   - first:
-      213: 5232354522813903170
-    second: soldier_attack_right_01_3
+      213: 7058978077203603771
+    second: soldier_attack_back_01_3
   - first:
-      213: 3781403788097832692
-    second: soldier_attack_right_01_4
+      213: -591068162654919913
+    second: soldier_attack_back_01_4
   - first:
-      213: -365847460042641343
-    second: soldier_attack_right_01_5
+      213: 8259701624689560553
+    second: soldier_attack_back_01_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: soldier_attack_right_01_0
+      name: soldier_attack_back_01_0
       rect:
         serializedVersion: 2
         x: 0
@@ -123,14 +123,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bde64be5397c51510800000000000000
-      internalID: 1519339885070413531
+      spriteID: 5bdf540a2fbb0a110800000000000000
+      internalID: 1270221745663901109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: soldier_attack_right_01_1
+      name: soldier_attack_back_01_1
       rect:
         serializedVersion: 2
         x: 32
@@ -144,14 +144,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a15a1515f25bf5b0800000000000000
-      internalID: -5333578121115709020
+      spriteID: 56715ea57ae61dbc0800000000000000
+      internalID: -3760102548814096539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: soldier_attack_right_01_2
+      name: soldier_attack_back_01_2
       rect:
         serializedVersion: 2
         x: 64
@@ -165,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e61d97f5d9dc8e670800000000000000
-      internalID: 8568324366867747182
+      spriteID: b028b882fe36b4830800000000000000
+      internalID: 4056445768205828619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: soldier_attack_right_01_3
+      name: soldier_attack_back_01_3
       rect:
         serializedVersion: 2
         x: 96
@@ -186,14 +186,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2413b3f57be0d9840800000000000000
-      internalID: 5232354522813903170
+      spriteID: b31adf0492786f160800000000000000
+      internalID: 7058978077203603771
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: soldier_attack_right_01_4
+      name: soldier_attack_back_01_4
       rect:
         serializedVersion: 2
         x: 128
@@ -207,14 +207,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f643e5e5be3a7430800000000000000
-      internalID: 3781403788097832692
+      spriteID: 71329ee33aa1cc7f0800000000000000
+      internalID: -591068162654919913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: soldier_attack_right_01_5
+      name: soldier_attack_back_01_5
       rect:
         serializedVersion: 2
         x: 160
@@ -228,8 +228,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 140fd266caf3ceaf0800000000000000
-      internalID: -365847460042641343
+      spriteID: 9eb865aadda50a270800000000000000
+      internalID: 8259701624689560553
       vertices: []
       indices: 
       edges: []
