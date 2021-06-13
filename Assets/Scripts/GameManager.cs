@@ -58,7 +58,8 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < plan; i++)
         Instantiate(instance.soliderPrefab, player.transform.position, player.transform.rotation, instance.allyFolder.transform);
 
-        instance.RestructureTheAllies();
+        //instance.RestructureTheAllies();
+        instance.restructure = true;
     }
 
     void RestructureTheAllies()
