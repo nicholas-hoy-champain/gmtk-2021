@@ -29554,14 +29554,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWave: 0
-  baseDelayBetweenSwordsmanSpawns: 0
-  baseDelayBetweenArcherSpawns: 0
-  swordsmanSpawnDelayNoise: 0
-  archerSpawnDelayNoise: 0
+  baseDelayBetweenSwordsmanSpawns: 3
+  baseDelayBetweenArcherSpawns: 3
+  swordsmanSpawnDelayNoise: 1
+  archerSpawnDelayNoise: 1
   TotalArchersInWave: 5
-  newWaveArcherMultiplier: 0
+  newWaveArcherMultiplier: 1.3
   TotalSwordsmanInWave: 10
-  newWaveSwordsmanMultiplier: 0
+  newWaveSwordsmanMultiplier: 1.3
   swordsmanPrefab: {fileID: 7183505978296628597, guid: f9b2f13baff80ee4d99d5c0f5f99ef74, type: 3}
   archerPrefab: {fileID: 35872631846266424, guid: 3ee954911ba3d484c8e57e5999bbc540, type: 3}
 --- !u!1 &2008302323

@@ -87,7 +87,7 @@ public class EnemySpawnManager : MonoBehaviour
 
         GameObject.Instantiate(swordsmanPrefab, currentSpawnLocation, Quaternion.identity);
         currentNumOfEnemies++;
-        numOfArchersSpawnedThisWave++;
+        numOfSwordsmenSpawnedThisWave++;
 
         StartCoroutine(nameof(SwordsmanWaitForDelay));
     }
