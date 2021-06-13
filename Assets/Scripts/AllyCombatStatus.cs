@@ -100,7 +100,7 @@ public class AllyCombatStatus : MonoBehaviour
         health -= damage;
         if (health < 1)
         {
-            Debug.Log("Ally Died");
+    
             GameManager.AllyRoster.Remove(this.gameObject);
             GameObject.FindObjectOfType<GameManager>().restructure = true;
             GameObject.Destroy(this.gameObject);

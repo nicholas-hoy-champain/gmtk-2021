@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SetOffsets();
-        RestructureTheAllies();
+        restructure = true;
     }
 
     // Update is called once per frame

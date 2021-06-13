@@ -15,7 +15,7 @@ public class EnemySwordsmanMovement : MonoBehaviour
     public float secondsToWaitForKilling;
 
     bool isMoving = true;
-
+    bool alive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -106,9 +106,12 @@ public class EnemySwordsmanMovement : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Enemy died");
-        GameObject.Destroy(this.gameObject);
-        EnemySpawnManager.currentNumOfEnemies--;
-        EnemySpawnManager.currentNumOfSwordsmen--;
+        if (alive)
+        {
+            alive = false;
+            GameObject.Destroy(this.gameObject);
+            EnemySpawnManager.currentNumOfEnemies--;
+            EnemySpawnManager.currentNumOfSwordsmen--;
+        }
     }
 }

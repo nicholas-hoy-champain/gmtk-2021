@@ -25,7 +25,7 @@ public class ArcherMovement : MonoBehaviour
     Vector2 direction;
     float delayBetweenNextShot;
     [SerializeField] MoveDirection facingDirection;
-    
+    bool alive = true;
 
     void OnDrawGizmosSelected()
     {
@@ -84,9 +84,9 @@ public class ArcherMovement : MonoBehaviour
 
         if (distance < minDesiredDistanceFromPlayer)
         {
-            //direction = (transform.position - captain.transform.position).normalized;
+            direction = (transform.position - captain.transform.position).normalized;
             isAttacking = false;
-            Debug.Log("Getting further away");
+            //Debug.Log("Getting further away");
         }
         else if (distance > maxDesiredDistanceFromPlayer)
         {
@@ -116,7 +116,6 @@ public class ArcherMovement : MonoBehaviour
     }
     void FireArrow()
     {
-        Debug.Log("Firing a cardinal arrow");
         delayBetweenNextShot = Random.Range(baseDurationBetweenArrows - durationNoise, baseDurationBetweenArrows + durationNoise);
 
         GameObject theArrow = GameObject.Instantiate(arrowPrefab, this.transform.position, Quaternion.identity);
@@ -134,10 +133,14 @@ public class ArcherMovement : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Enemy died");
-        GameObject.Destroy(this.gameObject);
+        if(alive)
+        {
+            alive = false;
+            GameObject.Destroy(this.gameObject);
 
-        EnemySpawnManager.currentNumOfEnemies--;
-        EnemySpawnManager.currentNumOfArchers--;
+            EnemySpawnManager.currentNumOfEnemies--;
+            EnemySpawnManager.currentNumOfArchers--;
+
+        }
     }
 }

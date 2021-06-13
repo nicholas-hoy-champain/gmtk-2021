@@ -89,13 +89,35 @@ public class EnemySpawnManager : MonoBehaviour
     void DetermineEnemy()
     {
         if (currentNumOfArchers < minNumOfArchers || currentNumOfSwordsmen == maxNumOfSwordsmen)
+        {
+            if(currentNumOfArchers < minNumOfArchers)
+                Debug.Log("Spawn Condition 0.5");
+            else
+                Debug.Log("Spawn Condition 1");
             currentEnemyToSpawn = archerPrefab;
+            currentNumOfArchers++;
+        }
         else if (currentNumOfSwordsmen < minNumOfSwordsmen || currentNumOfArchers == maxNumOfArchers)
+        {
+            if (currentNumOfSwordsmen < minNumOfSwordsmen)
+                Debug.Log("Spawn Condition 1.5");
+            else
+                Debug.Log("Spawn Condition 2");
             currentEnemyToSpawn = swordsmanPrefab;
-        else if (UnityEngine.Random.Range(0, 2) == 0) 
+            currentNumOfSwordsmen++;
+        }
+        else if (UnityEngine.Random.Range(0, 2) == 0)
+        {
+            Debug.Log("Spawn Condition 3");
             currentEnemyToSpawn = archerPrefab;
+            currentNumOfArchers++;
+        }
         else
+        {
+            Debug.Log("Spawn Condition 4");
+            currentNumOfSwordsmen++;
             currentEnemyToSpawn = swordsmanPrefab;
+        }
 
     }
 

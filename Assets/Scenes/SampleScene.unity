@@ -1129,9 +1129,9 @@ MonoBehaviour:
   maxNumOfEnemies: 56
   baseDelayBetweenSpawns: 3
   delayNoise: 1
-  minNumOfArchers: 0
+  minNumOfArchers: -1
   maxNumOfArchers: 20
-  minNumOfSwordsmen: 0
+  minNumOfSwordsmen: -1
   maxNumOfSwordsmen: 20
   swordsmanPrefab: {fileID: 7183505978296628597, guid: f9b2f13baff80ee4d99d5c0f5f99ef74, type: 3}
   archerPrefab: {fileID: 35872631846266424, guid: 3ee954911ba3d484c8e57e5999bbc540, type: 3}
