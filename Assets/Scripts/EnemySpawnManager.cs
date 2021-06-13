@@ -29,6 +29,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     bool isSwordsmanSpawnDelayed;
     bool isArcherSpawnDelayed;
+    bool isWaitingForNextWave = false;
     public static int currentNumOfEnemies;
     public static int numOfArchersSpawnedThisWave = 0;
     public static int numOfSwordsmenSpawnedThisWave = 0;
@@ -44,27 +45,38 @@ public class EnemySpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((numOfSwordsmenSpawnedThisWave < TotalSwordsmanInWave) && !isSwordsmanSpawnDelayed)
+        if(!isWaitingForNextWave)
         {
-            Debug.Log("spawn sword");
-            SpawnSwordsman();
-        }
-        if ((numOfArchersSpawnedThisWave < TotalArchersInWave) && !isArcherSpawnDelayed)
-        {
-            Debug.Log("spawn archer");
-            SpawnArcher();
-        }
+            if ((numOfSwordsmenSpawnedThisWave < TotalSwordsmanInWave) && !isSwordsmanSpawnDelayed)
+            {
+                SpawnSwordsman();
+            }
+            if ((numOfArchersSpawnedThisWave < TotalArchersInWave) && !isArcherSpawnDelayed)
+            {
+                SpawnArcher();
+            }
 
-        if ((numOfSwordsmenSpawnedThisWave == TotalSwordsmanInWave) && (numOfArchersSpawnedThisWave == TotalArchersInWave) && (currentNumOfEnemies == 0))
-        {
-            // wave done
-            Debug.Log("Wave done");
+            if ((numOfSwordsmenSpawnedThisWave == TotalSwordsmanInWave) &&
+                (numOfArchersSpawnedThisWave == TotalArchersInWave) &&
+                (currentNumOfEnemies == 0))
+            {
+                // wave done
+                Debug.Log("Wave done");
+                isWaitingForNextWave = true;
 
-            /*
-             * currentWave++;
-             * HUDmanager.AnnounceWave(currentWave);
-             */
+                currentWave++;
+                HUDmanager.AnnounceWave(currentWave);
+                StartCoroutine(nameof(WaitForWaveAnnouncement));
+            }
         }
+    }
+
+    IEnumerator WaitForWaveAnnouncement()
+    {
+        yield return new WaitForSeconds(HUDmanager.timeWaveTextShows);
+        numOfArchersSpawnedThisWave = 0;
+        numOfSwordsmenSpawnedThisWave = 0;
+        isWaitingForNextWave = false;
     }
 
     void SpawnArcher()
