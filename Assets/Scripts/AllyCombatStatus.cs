@@ -41,9 +41,12 @@ public class AllyCombatStatus : MonoBehaviour
     [SerializeField] AudioSource audsrcPlayerDeath;
     [SerializeField] AudioSource audsrcArrowBlock;
 
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         health = maxHealth;
         GameManager.AllyRoster.Add(this.gameObject);
         id = ++CURRENT_MAX_ID;
@@ -56,11 +59,16 @@ public class AllyCombatStatus : MonoBehaviour
         if(isPlayer)
         {
             CheckForPlayerWeaponSwitch();
+
+            anim.SetBool("frontOfShield", GameManager.instance.allyFolder.transform.childCount < 1);
         }
         else
         {
             ;
         }
+
+
+        anim.SetBool("shield", isShielding);
     }
 
     void CheckForPlayerWeaponSwitch()
@@ -136,23 +144,31 @@ public class AllyCombatStatus : MonoBehaviour
             {
                 case MoveDirection.UP:
                 {
-                    HandContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);      
+                    HandContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
+                        anim.SetFloat("faceX", 0);
+                        anim.SetFloat("faceY", 1);
                     break;
                 }
                 case MoveDirection.DOWN:
                 {
-                    HandContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, -90.0f);
-                    break;
+                        HandContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, -90.0f);
+                        anim.SetFloat("faceX", 0);
+                        anim.SetFloat("faceY", -1);
+                        break;
                 }
                 case MoveDirection.LEFT:
                 {
                     HandContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
-                    break;
+                        anim.SetFloat("faceX", -1);
+                        anim.SetFloat("faceY", 0);
+                        break;
                 }
                 case MoveDirection.RIGHT:
                 {
                     HandContainer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-                    break;
+                        anim.SetFloat("faceX", 1);
+                        anim.SetFloat("faceY", 0);
+                        break;
                 }
             }
         }

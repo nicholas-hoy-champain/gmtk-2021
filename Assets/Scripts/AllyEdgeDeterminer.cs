@@ -30,6 +30,13 @@ public class AllyEdgeDeterminer : MonoBehaviour
     {
         CheckForEdge();
         displayBoolCenter = center;
+
+        MoveDirection sdajshd = GetComponent<AllyCombatStatus>().currentDirection;
+
+        GetComponent<Animator>().SetBool("frontOfShield", ((top && sdajshd == MoveDirection.UP) ||
+            (left && sdajshd == MoveDirection.LEFT) ||
+            (bottom && sdajshd == MoveDirection.DOWN) ||
+            (right && sdajshd == MoveDirection.RIGHT)));
     }
 
     public void CheckForEdge()
