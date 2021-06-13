@@ -70,8 +70,8 @@ public class EnemySpawnManager : MonoBehaviour
 
         DetermineSpawnLocation();
 
-        GameObject.Instantiate(swordsmanPrefab, currentSpawnLocation, Quaternion.identity);
-        numOfSwordsmenSpawnedThisWave++;
+        GameObject.Instantiate(archerPrefab, currentSpawnLocation, Quaternion.identity);
+        numOfArchersSpawnedThisWave++;
         currentNumOfEnemies++;
 
         StartCoroutine(nameof(ArcherWaitForDelay));
@@ -85,7 +85,7 @@ public class EnemySpawnManager : MonoBehaviour
         
         DetermineSpawnLocation();
 
-        GameObject.Instantiate(archerPrefab, currentSpawnLocation, Quaternion.identity);
+        GameObject.Instantiate(swordsmanPrefab, currentSpawnLocation, Quaternion.identity);
         currentNumOfEnemies++;
         numOfArchersSpawnedThisWave++;
 

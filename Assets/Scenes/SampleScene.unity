@@ -29553,13 +29553,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0865660cfaea047bcf2c9ec385e4fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxNumOfEnemies: 56
-  baseDelayBetweenSpawns: 3
-  delayNoise: 1
-  minNumOfArchers: -1
-  maxNumOfArchers: 20
-  minNumOfSwordsmen: -1
-  maxNumOfSwordsmen: 20
+  currentWave: 0
+  baseDelayBetweenSwordsmanSpawns: 3
+  baseDelayBetweenArcherSpawns: 3
+  swordsmanSpawnDelayNoise: 1
+  archerSpawnDelayNoise: 1
+  TotalArchersInWave: 5
+  newWaveArcherMultiplier: 1.2
+  TotalSwordsmanInWave: 10
+  newWaveSwordsmanMultiplier: 1.2
   swordsmanPrefab: {fileID: 7183505978296628597, guid: f9b2f13baff80ee4d99d5c0f5f99ef74, type: 3}
   archerPrefab: {fileID: 35872631846266424, guid: 3ee954911ba3d484c8e57e5999bbc540, type: 3}
 --- !u!1 &2008302323
