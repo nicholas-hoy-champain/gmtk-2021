@@ -27,6 +27,8 @@ public class ArcherMovementAndAttacking : MonoBehaviour
     [SerializeField] MoveDirection facingDirection;
     bool alive = true;
 
+    Animator anim;
+
     void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position
@@ -40,6 +42,7 @@ public class ArcherMovementAndAttacking : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         if (captain == null)
         {
             captain = GameObject.FindGameObjectWithTag("Player");
@@ -76,6 +79,9 @@ public class ArcherMovementAndAttacking : MonoBehaviour
         if (isAttacking)
             direction = (captain.transform.position - transform.position).normalized;
         //Debug.Log("Current Inputdir = " + direction + " Now facing: " + currentDir);
+
+        anim.SetFloat("faceX", direction.x);
+        anim.SetFloat("faceY", direction.y);
     }
 
     void DetermineAction()
