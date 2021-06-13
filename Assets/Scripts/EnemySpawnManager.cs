@@ -67,9 +67,11 @@ public class EnemySpawnManager : MonoBehaviour
                 HUDmanager.AnnounceWave(currentWave);
                 StartCoroutine(nameof(WaitForWaveAnnouncement));
 
+                StatManager.waves++;
+
                 //Even # wave = +3 soliders
                 //Odd # wave = +2 health (if at max, +1 solider)
-                if(currentWave % 2 == 0)
+                if (currentWave % 2 == 0)
                 {
                     GameManager.AddSoliders(3);
                 }

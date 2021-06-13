@@ -110,6 +110,7 @@ public class EnemySwordsmanMovement : MonoBehaviour
         {
             alive = false;
             GameObject.Destroy(this.gameObject);
+            StatManager.enemiesKilled++;
             EnemySpawnManager.currentNumOfEnemies--;
         }
     }

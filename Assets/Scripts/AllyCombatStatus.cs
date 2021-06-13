@@ -94,6 +94,8 @@ public class AllyCombatStatus : MonoBehaviour
         if (health < 1)
         {
             Debug.Log("Player Died");
+            StatManager.SaveToPlayePrefs();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
         }
     }
 
@@ -104,6 +106,7 @@ public class AllyCombatStatus : MonoBehaviour
         {
     
             GameManager.AllyRoster.Remove(this.gameObject);
+            StatManager.alliesLost++;
             GameObject.FindObjectOfType<GameManager>().restructure = true;
             GameObject.Destroy(this.gameObject);
         }

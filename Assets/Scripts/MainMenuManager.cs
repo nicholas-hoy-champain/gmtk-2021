@@ -57,7 +57,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadGame()
     {
-        //Someone else do this
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 }

@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         {
             RestructureTheAllies();
             restructure = false;
+            StatManager.PassArmySize(allyFolder.transform.childCount);
         }
     }
 
