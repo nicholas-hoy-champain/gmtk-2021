@@ -75,11 +75,20 @@ public class EnemySpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(HUDmanager.timeWaveTextShows);
 
+<<<<<<< HEAD
         Debug.Log("Scale up the max nums between waves here");
 
         numOfArchersSpawnedThisWave = 0;
         numOfSwordsmenSpawnedThisWave = 0;
         isWaitingForNextWave = false;
+=======
+            /*
+             * currentWave++;
+             * HUDmanager.AnnounceWave(currentWave);
+             * 
+             */
+        }
+>>>>>>> 6d7f7f002bde9c932d7b3436c1b027b706aaf532
     }
 
     void SpawnArcher()
