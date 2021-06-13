@@ -29074,8 +29074,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ea9ba4b38df0547810c0cb80f69b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusOfWhereArrowsSpawn: 3.9
-  baseDurationBetweenArrows: 3
+  radiusOfWhereArrowsSpawn: 5
+  baseDurationBetweenArrows: 1
   durationNoise: 2
   maxNumOfArrowsAtOneTime: 3
   overheadArrowPrefab: {fileID: 2263180907651550959, guid: 18d2a53576d86554ca63b5b1a452a1f6, type: 3}
@@ -29242,7 +29242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   folderEntity: {fileID: 1857924662}
   placeHolder: {fileID: 1461381494655441673, guid: 0a59ea7e3b4e0ba4bba46694a2927b99, type: 3}
-  soliders: 9
+  soliders: 5
   size: 0.33333334
 --- !u!61 &1266179470
 BoxCollider2D:
