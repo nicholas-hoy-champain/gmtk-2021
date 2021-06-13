@@ -75,9 +75,9 @@ public class OverheadArrow : MonoBehaviour
             {
                 Debug.Log("ARROW HIT");
                 if (statusOfAlly.isPlayer)
-                    statusOfAlly.EndGame();
+                    statusOfAlly.DamagePlayer(2);
                 else
-                    statusOfAlly.KillAlly();
+                    statusOfAlly.DamageAlly(2);
             }
         }
     }

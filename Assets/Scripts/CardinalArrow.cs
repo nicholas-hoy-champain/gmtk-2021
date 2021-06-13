@@ -93,9 +93,9 @@ public class CardinalArrow : MonoBehaviour
         yield return new WaitForSeconds(secondsToWaitForKilling);
 
         if (killee.isPlayer)
-            killee.EndGame();
+            killee.DamagePlayer(2);
         else
-            killee.KillAlly();
+            killee.DamageAlly(2);
 
         GameObject.Destroy(this.gameObject);
     }

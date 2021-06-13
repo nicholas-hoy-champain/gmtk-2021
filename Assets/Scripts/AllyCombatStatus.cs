@@ -33,9 +33,15 @@ public class AllyCombatStatus : MonoBehaviour
     [SerializeField] GameObject Shield;
 
 
+    [SerializeField] public float health;
+    [SerializeField] public float maxHealth;
+    [SerializeField] public float endGameMaxHealth;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
         GameManager.AllyRoster.Add(this.gameObject);
         id = ++CURRENT_MAX_ID;
     }
@@ -80,17 +86,25 @@ public class AllyCombatStatus : MonoBehaviour
         }
     }
 
-    public void EndGame()
+    public void DamagePlayer(int damage)
     {
-        Debug.Log("Player Died");
+        health -= damage;
+        if (health < 1)
+        {
+            Debug.Log("Player Died");
+        }
     }
 
-    public void KillAlly()
+    public void DamageAlly(int damage)
     {
-        Debug.Log("Ally Died");
-        GameManager.AllyRoster.Remove(this.gameObject);
-        GameObject.FindObjectOfType<GameManager>().restructure = true;
-        GameObject.Destroy(this.gameObject);
+        health -= damage;
+        if (health < 1)
+        {
+            Debug.Log("Ally Died");
+            GameManager.AllyRoster.Remove(this.gameObject);
+            GameObject.FindObjectOfType<GameManager>().restructure = true;
+            GameObject.Destroy(this.gameObject);
+        }
     }
 
     public void ChangeDirection(MoveDirection newDirection)
