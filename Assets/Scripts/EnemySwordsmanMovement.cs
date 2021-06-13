@@ -94,12 +94,12 @@ public class EnemySwordsmanMovement : MonoBehaviour
     {
         isMoving = false;
         
-        yield return new WaitForSeconds(secondsToWaitForKilling);
 
         if (killee.isPlayer)
             killee.EndGame();
         else
             killee.KillAlly();
+        yield return new WaitForSeconds(secondsToWaitForKilling);
 
         isMoving = true;
     }
@@ -108,5 +108,7 @@ public class EnemySwordsmanMovement : MonoBehaviour
     {
         Debug.Log("Enemy died");
         GameObject.Destroy(this.gameObject);
+        EnemySpawnManager.currentNumOfEnemies--;
+        EnemySpawnManager.currentNumOfSwordsmen--;
     }
 }

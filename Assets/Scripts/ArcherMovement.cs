@@ -84,7 +84,7 @@ public class ArcherMovement : MonoBehaviour
 
         if (distance < minDesiredDistanceFromPlayer)
         {
-            direction = (transform.position - captain.transform.position).normalized;
+            //direction = (transform.position - captain.transform.position).normalized;
             isAttacking = false;
             Debug.Log("Getting further away");
         }
@@ -92,12 +92,12 @@ public class ArcherMovement : MonoBehaviour
         {
             direction = (captain.transform.position - transform.position).normalized;
             isAttacking = false;
-            Debug.Log("Getting closer");
+            //Debug.Log("Getting closer");
 
         }
         else // attack
         {
-            Debug.Log("Attacking");
+            //Debug.Log("Attacking");
 
             isAttacking = true;
         }
@@ -136,5 +136,8 @@ public class ArcherMovement : MonoBehaviour
     {
         Debug.Log("Enemy died");
         GameObject.Destroy(this.gameObject);
+
+        EnemySpawnManager.currentNumOfEnemies--;
+        EnemySpawnManager.currentNumOfArchers--;
     }
 }
