@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: floor_brickpulled_01
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 497778dfad6d7484a8c2b9f5051cafcd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9117080605e66749b562d079b39b8e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

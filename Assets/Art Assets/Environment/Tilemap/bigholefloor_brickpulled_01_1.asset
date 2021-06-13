@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: bigholefloor_brickpulled_01_1
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -4215130156520322569, guid: c04cfe99d97a7844b94f7de4f0a9cc1e, type: 3}
+  m_Sprite: {fileID: 5782593790793133028, guid: b4f8fda324f06634db2b42c2a4437ded, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
