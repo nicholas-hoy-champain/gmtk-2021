@@ -26,7 +26,6 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] GameObject swordsmanPrefab;
     [SerializeField] GameObject archerPrefab;
 
-
     bool isSwordsmanSpawnDelayed;
     bool isArcherSpawnDelayed;
     bool isWaitingForNextWave = false;
@@ -67,6 +66,26 @@ public class EnemySpawnManager : MonoBehaviour
                 currentWave++;
                 HUDmanager.AnnounceWave(currentWave);
                 StartCoroutine(nameof(WaitForWaveAnnouncement));
+
+                //Even # wave = +3 soliders
+                //Odd # wave = +2 health (if at max, +1 solider)
+                if(currentWave % 2 == 0)
+                {
+                    GameManager.AddSoliders(3);
+                }
+                else
+                {
+                    AllyCombatStatus player = GameManager.player.GetComponent<AllyCombatStatus>();
+                    if (player.health == player.maxHealth)
+                    {
+                        GameManager.AddSoliders(1);
+                    }
+                    else
+                    {
+                        player.health = Mathf.Min(player.maxHealth, player.health + 2);
+                    }
+
+                }
             }
         }
     }
@@ -75,20 +94,11 @@ public class EnemySpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(HUDmanager.timeWaveTextShows);
 
-<<<<<<< HEAD
         Debug.Log("Scale up the max nums between waves here");
 
         numOfArchersSpawnedThisWave = 0;
         numOfSwordsmenSpawnedThisWave = 0;
         isWaitingForNextWave = false;
-=======
-            /*
-             * currentWave++;
-             * HUDmanager.AnnounceWave(currentWave);
-             * 
-             */
-        }
->>>>>>> 6d7f7f002bde9c932d7b3436c1b027b706aaf532
     }
 
     void SpawnArcher()

@@ -204,8 +204,8 @@ public class AllyEdgeDeterminer : MonoBehaviour
 
     bool FindOffset(int x, int y)
     {
-        List<Vector3> offsets = gameManager.GetComponent<GameManager>().offsets;
-        float size = gameManager.GetComponent<GameManager>().size;
+        List<Vector3> offsets = GameManager.instance.offsets;
+        float size = GameManager.instance.size;
         Vector3 ideal = offsets[transform.GetSiblingIndex()] + new Vector3(x,y)*size;
         for(int i = endIndexOfLayer + 1 - layer * 8; i < count; i++)
         {

@@ -239,6 +239,7 @@ MonoBehaviour:
   allyFolder: {fileID: 1857924661}
   soliders: 30
   size: 0.33333334
+  soliderPrefab: {fileID: 1461381494655441673, guid: 0a59ea7e3b4e0ba4bba46694a2927b99, type: 3}
   restructure: 0
   offsets: []
 --- !u!4 &44618873
@@ -29224,9 +29225,9 @@ MonoBehaviour:
   HandContainer: {fileID: 1014216795}
   Spear: {fileID: 534092192}
   Shield: {fileID: 424324347}
-  health: 2
-  maxHealth: 2
-  endGameMaxHealth: 4
+  health: 5
+  maxHealth: 5
+  endGameMaxHealth: 5
 --- !u!114 &1266179469
 MonoBehaviour:
   m_ObjectHideFlags: 0

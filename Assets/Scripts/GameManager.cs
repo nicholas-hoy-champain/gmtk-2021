@@ -6,21 +6,31 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     const int MAX_ALLYNUM = 50;
     public static List<GameObject> AllyRoster = new List<GameObject>();
     public GameObject allyFolder;
     [SerializeField] int soliders;
     [SerializeField] public float size;
+    public GameObject soliderPrefab;
+
+    [HideInInspector]
     public bool restructure;
 
-    //[HideInInspector]
+    [HideInInspector]
     public List<Vector3> offsets;
+
+    [HideInInspector]
+    public static GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         SetOffsets();
         restructure = true;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -36,6 +46,19 @@ public class GameManager : MonoBehaviour
     private void OnConnectedToServer()
     {
         
+    }
+
+    static public void AddSoliders(int plan)
+    {
+        if(instance.allyFolder.transform.childCount + plan > MAX_ALLYNUM)
+        {
+            plan = MAX_ALLYNUM - instance.allyFolder.transform.childCount;
+        }
+
+        for(int i = 0; i < plan; i++)
+        Instantiate(instance.soliderPrefab, player.transform.position, player.transform.rotation, instance.allyFolder.transform);
+
+        instance.RestructureTheAllies();
     }
 
     void RestructureTheAllies()
