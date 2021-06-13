@@ -96,9 +96,9 @@ public class EnemySwordsmanMovement : MonoBehaviour
         
 
         if (killee.isPlayer)
-            killee.EndGame();
+            killee.DamagePlayer(1);
         else
-            killee.KillAlly();
+            killee.DamageAlly(1);
         yield return new WaitForSeconds(secondsToWaitForKilling);
 
         isMoving = true;

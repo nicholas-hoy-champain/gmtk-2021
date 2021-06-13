@@ -75,9 +75,6 @@ public class EnemySpawnManager : MonoBehaviour
             bottomLeftOfScreen = ((Vector2)transform.position - SCREEN_OFFSET);
             topRightOfScreen = ((Vector2)transform.position + SCREEN_OFFSET);
 
-            Debug.Log("BL" + bottomLeftOfScreen);
-            Debug.Log("TR" + topRightOfScreen);
-
             if (
                 (currentSpawnLocation.x > bottomLeftOfScreen.x) &&  
                 (currentSpawnLocation.y > bottomLeftOfScreen.y) &&   
