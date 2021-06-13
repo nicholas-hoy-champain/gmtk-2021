@@ -17,18 +17,15 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] float swordsmanSpawnDelayNoise;
     [SerializeField] float archerSpawnDelayNoise;
     [Space]
-    [SerializeField] int totalArchersInWave = 5;
+    [SerializeField] int TotalArchersInWave = 5;
     [SerializeField] float newWaveArcherMultiplier;
-    [SerializeField] float postWave6ArcherMultiplier;
-    [SerializeField] int additionalArchersPerWave;
     [Space]
-    [SerializeField] int totalSwordsmanInWave = 10;
+    [SerializeField] int TotalSwordsmanInWave = 10;
     [SerializeField] float newWaveSwordsmanMultiplier;
-    [SerializeField] float postWave6SwordsmanMultiplier;
-    [SerializeField] int additionalSwordsmanPerWave;
     [Space]
     [SerializeField] GameObject swordsmanPrefab;
     [SerializeField] GameObject archerPrefab;
+
 
     bool isSwordsmanSpawnDelayed;
     bool isArcherSpawnDelayed;
@@ -50,17 +47,17 @@ public class EnemySpawnManager : MonoBehaviour
     {
         if(!isWaitingForNextWave)
         {
-            if ((numOfSwordsmenSpawnedThisWave < totalSwordsmanInWave) && !isSwordsmanSpawnDelayed)
+            if ((numOfSwordsmenSpawnedThisWave < TotalSwordsmanInWave) && !isSwordsmanSpawnDelayed)
             {
                 SpawnSwordsman();
             }
-            if ((numOfArchersSpawnedThisWave < totalArchersInWave) && !isArcherSpawnDelayed)
+            if ((numOfArchersSpawnedThisWave < TotalArchersInWave) && !isArcherSpawnDelayed)
             {
                 SpawnArcher();
             }
 
-            if ((numOfSwordsmenSpawnedThisWave == totalSwordsmanInWave) &&
-                (numOfArchersSpawnedThisWave == totalArchersInWave) &&
+            if ((numOfSwordsmenSpawnedThisWave == TotalSwordsmanInWave) &&
+                (numOfArchersSpawnedThisWave == TotalArchersInWave) &&
                 (currentNumOfEnemies == 0))
             {
                 // wave done
@@ -70,8 +67,6 @@ public class EnemySpawnManager : MonoBehaviour
                 currentWave++;
                 HUDmanager.AnnounceWave(currentWave);
                 StartCoroutine(nameof(WaitForWaveAnnouncement));
-
-                StatManager.waves++;
             }
         }
     }
@@ -80,45 +75,10 @@ public class EnemySpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(HUDmanager.timeWaveTextShows);
 
-        //Even # wave = +3 soldiers
-        //Odd # wave = +2 health (if at max, +1 solider)
-        if (currentWave % 2 == 0)
-        {
-            GameManager.AddSoliders(3);
-        }
-        else
-        {
-            AllyCombatStatus player = GameManager.player.GetComponent<AllyCombatStatus>();
-            if (player.health == player.maxHealth)
-            {
-                GameManager.AddSoliders(1);
-            }
-            else
-            {
-                player.health = Mathf.Min(player.maxHealth, player.health + 2);
-            }
-
-        }
-
-        if(currentWave <= 5)
-        {
-            totalArchersInWave = (int)(totalArchersInWave * newWaveArcherMultiplier);
-            totalSwordsmanInWave = (int)(totalSwordsmanInWave * newWaveSwordsmanMultiplier);
-        }
-        else
-        {
-            totalArchersInWave = (int)(totalArchersInWave * postWave6ArcherMultiplier);
-            totalSwordsmanInWave = (int)(totalSwordsmanInWave * postWave6SwordsmanMultiplier);
-        }
-
-        
-        
-        totalArchersInWave += additionalArchersPerWave;
-        totalSwordsmanInWave += additionalSwordsmanPerWave;
+        Debug.Log("Scale up the max nums between waves here");
 
         numOfArchersSpawnedThisWave = 0;
         numOfSwordsmenSpawnedThisWave = 0;
-        
         isWaitingForNextWave = false;
     }
 
