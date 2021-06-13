@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialTimeBeforeImpact: 3
   audsrcArrowBlocked: {fileID: 2255176683253693167}
+  arrow: {fileID: 21300000, guid: 57251853cc9758e4f96c187413dc2518, type: 3}
 --- !u!58 &2263180907651550955
 CircleCollider2D:
   m_ObjectHideFlags: 0

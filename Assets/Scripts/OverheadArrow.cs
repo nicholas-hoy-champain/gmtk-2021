@@ -6,6 +6,7 @@ public class OverheadArrow : MonoBehaviour
 {
     [SerializeField] float initialTimeBeforeImpact;
     [SerializeField] AudioSource audsrcArrowBlocked;
+    [SerializeField] Sprite arrow;
 
     Collider2D contactCollider;
 
@@ -58,6 +59,9 @@ public class OverheadArrow : MonoBehaviour
     IEnumerator ChangeToDecoration()
     {
         contactCollider.enabled = false;
+        
+        this.transform.transform.localScale *= 5.0f;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = arrow;
         overheadArrowManager.currentNumOfArrows--;
 
         yield return new WaitForSeconds(durationToDecorateGround);
