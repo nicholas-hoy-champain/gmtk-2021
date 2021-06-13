@@ -106,7 +106,7 @@ public class AllyCombatStatus : MonoBehaviour
             else
                 audsrcPlayerDeath.Play();
             StatManager.SaveToPlayePrefs();
-            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(3);
         }
     }
 

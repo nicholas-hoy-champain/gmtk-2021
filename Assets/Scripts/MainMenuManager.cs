@@ -55,8 +55,12 @@ public class MainMenuManager : MonoBehaviour
         credits.SetActive(true);
     }
 
-    public void LoadGame()
+    public void LoadTutorial()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
+    public void LoadGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 }

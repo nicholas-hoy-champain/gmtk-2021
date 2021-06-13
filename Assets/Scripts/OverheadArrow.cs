@@ -62,6 +62,8 @@ public class OverheadArrow : MonoBehaviour
         
         this.transform.transform.localScale *= 5.0f;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = arrow;
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+
         overheadArrowManager.currentNumOfArrows--;
 
         yield return new WaitForSeconds(durationToDecorateGround);
