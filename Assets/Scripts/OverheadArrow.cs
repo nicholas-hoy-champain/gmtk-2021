@@ -5,7 +5,7 @@ using UnityEngine;
 public class OverheadArrow : MonoBehaviour
 {
     [SerializeField] float initialTimeBeforeImpact;
-
+    [SerializeField] AudioSource audsrcArrowBlocked;
 
     Collider2D contactCollider;
 
@@ -71,7 +71,7 @@ public class OverheadArrow : MonoBehaviour
         {
             AllyCombatStatus statusOfAlly = collision.gameObject.GetComponent<AllyCombatStatus>();
 
-            if(!statusOfAlly.isShielding)
+            if (!statusOfAlly.isShielding)
             {
                 //Debug.Log("ARROW HIT");
                 if (statusOfAlly.isPlayer)
@@ -79,6 +79,8 @@ public class OverheadArrow : MonoBehaviour
                 else
                     statusOfAlly.DamageAlly(2);
             }
+            else
+                audsrcArrowBlocked.Play();
         }
     }
 }
