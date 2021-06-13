@@ -70,17 +70,17 @@ public class AllyCombatStatus : MonoBehaviour
 
     public void StanceSwitch()
     {
-        Debug.Log("Ally switching stance");
+        //Debug.Log("Ally switching stance");
         if (isShielding)
         {
-            Debug.Log("switching to spear");
+            //Debug.Log("switching to spear");
             Shield.SetActive(false);
             Spear.SetActive(true);
             isShielding = false;
         }
         else
         {
-            Debug.Log("switching to shield");
+            //Debug.Log("switching to shield");
             Shield.SetActive(true);
             Spear.SetActive(false);
             isShielding = true;

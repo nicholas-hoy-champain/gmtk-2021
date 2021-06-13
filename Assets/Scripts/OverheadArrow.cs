@@ -73,7 +73,7 @@ public class OverheadArrow : MonoBehaviour
 
             if(!statusOfAlly.isShielding)
             {
-                Debug.Log("ARROW HIT");
+                //Debug.Log("ARROW HIT");
                 if (statusOfAlly.isPlayer)
                     statusOfAlly.DamagePlayer(2);
                 else

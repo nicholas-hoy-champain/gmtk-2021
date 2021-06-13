@@ -9,6 +9,7 @@ public class FallingArrowSpawnRadius : MonoBehaviour
     [SerializeField] float durationNoise;
     [SerializeField] int maxNumOfArrowsAtOneTime;
     [SerializeField] GameObject overheadArrowPrefab;
+    [SerializeField] GameObject player;
     
     
     [HideInInspector] public int currentNumOfArrows = 0;
