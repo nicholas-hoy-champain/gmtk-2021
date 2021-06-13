@@ -23,7 +23,7 @@ public class SpearScript : MonoBehaviour
             if (collision.GetComponent<EnemySwordsmanMovement>())
                 collision.GetComponent<EnemySwordsmanMovement>().Die();
             else
-                collision.GetComponent<ArcherMovement>().Die();
+                collision.GetComponent<ArcherMovementAndAttacking>().Die();
         }
     }
 }

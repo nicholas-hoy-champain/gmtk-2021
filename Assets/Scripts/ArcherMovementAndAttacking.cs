@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcherMovement : MonoBehaviour
+public class ArcherMovementAndAttacking : MonoBehaviour
 {
     [SerializeField] static GameObject captain = null;
 
@@ -139,8 +139,6 @@ public class ArcherMovement : MonoBehaviour
             GameObject.Destroy(this.gameObject);
 
             EnemySpawnManager.currentNumOfEnemies--;
-            EnemySpawnManager.currentNumOfArchers--;
-
         }
     }
 }

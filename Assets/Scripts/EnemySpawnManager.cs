@@ -10,56 +10,86 @@ public class EnemySpawnManager : MonoBehaviour
     Vector2 TOP_RIGHT_OF_MAP = new Vector2(7.5f, 7.5f);
 
     [Space]
-    [SerializeField] int maxNumOfEnemies;
-    [SerializeField] float baseDelayBetweenSpawns;
-    [SerializeField] float delayNoise;
+    [SerializeField] int currentWave = 0;
     [Space]
-    [SerializeField] int minNumOfArchers;
-    [SerializeField] int maxNumOfArchers;
+    [SerializeField] float baseDelayBetweenSwordsmanSpawns;
+    [SerializeField] float baseDelayBetweenArcherSpawns;
+    [SerializeField] float swordsmanSpawnDelayNoise;
+    [SerializeField] float archerSpawnDelayNoise;
     [Space]
-    [SerializeField] int minNumOfSwordsmen;
-    [SerializeField] int maxNumOfSwordsmen;
+    [SerializeField] int TotalArchersInWave = 5;
+    [SerializeField] float newWaveArcherMultiplier;
+    [Space]
+    [SerializeField] int TotalSwordsmanInWave = 10;
+    [SerializeField] float newWaveSwordsmanMultiplier;
     [Space]
     [SerializeField] GameObject swordsmanPrefab;
     [SerializeField] GameObject archerPrefab;
 
 
-    bool isSpawnDelayed;
+    bool isSwordsmanSpawnDelayed;
+    bool isArcherSpawnDelayed;
     public static int currentNumOfEnemies;
-    public static int currentNumOfArchers;
-    public static int currentNumOfSwordsmen;
-    float currentDelayBeforeNextSpawn;
+    public static int numOfArchersSpawnedThisWave = 0;
+    public static int numOfSwordsmenSpawnedThisWave = 0;
+    float archerSpawnDelay;
+    float swordsmanSpawnDelay;
 
     Vector2 bottomLeftOfScreen;
     Vector2 topRightOfScreen;
 
     Vector2 currentSpawnLocation;
     bool isValidSpawnLocation;
-    GameObject currentEnemyToSpawn;
 
     // Update is called once per frame
     void Update()
     {
-        if ((currentNumOfEnemies < maxNumOfEnemies) && !isSpawnDelayed)
+        if ((numOfSwordsmenSpawnedThisWave < TotalSwordsmanInWave) && !isSwordsmanSpawnDelayed)
         {
-            SpawnEnemy();
+            Debug.Log("spawn sword");
+            SpawnSwordsman();
+        }
+        if ((numOfArchersSpawnedThisWave < TotalArchersInWave) && !isArcherSpawnDelayed)
+        {
+            Debug.Log("spawn archer");
+            SpawnArcher();
+        }
+
+        if ((numOfSwordsmenSpawnedThisWave == TotalSwordsmanInWave) && (numOfArchersSpawnedThisWave == TotalArchersInWave) && (currentNumOfEnemies == 0))
+        {
+            // wave done
+            Debug.Log("Wave done");
         }
     }
 
-    void SpawnEnemy()
+    void SpawnArcher()
     {
-        Debug.Log("Firing an overhead Arrow");
-        currentDelayBeforeNextSpawn = Random.Range(baseDelayBetweenSpawns - delayNoise, baseDelayBetweenSpawns + delayNoise);
-        if (currentDelayBeforeNextSpawn < 0.0f)
-            currentDelayBeforeNextSpawn = 0.0f;
-        
-        DetermineSpawnLocation();
-        DetermineEnemy();
+        archerSpawnDelay = Random.Range(baseDelayBetweenArcherSpawns - archerSpawnDelayNoise, baseDelayBetweenArcherSpawns + archerSpawnDelayNoise);
+        if (archerSpawnDelay < 0.0f)
+            archerSpawnDelay = 0.0f;
 
-        GameObject.Instantiate(currentEnemyToSpawn, currentSpawnLocation, Quaternion.identity);
+        DetermineSpawnLocation();
+
+        GameObject.Instantiate(swordsmanPrefab, currentSpawnLocation, Quaternion.identity);
+        numOfSwordsmenSpawnedThisWave++;
         currentNumOfEnemies++;
 
-        StartCoroutine(nameof(WaitForDelay));
+        StartCoroutine(nameof(ArcherWaitForDelay));
+    }
+
+    void SpawnSwordsman()
+    {
+        swordsmanSpawnDelay = Random.Range(baseDelayBetweenSwordsmanSpawns - swordsmanSpawnDelayNoise, baseDelayBetweenSwordsmanSpawns + swordsmanSpawnDelayNoise);
+        if (swordsmanSpawnDelay < 0.0f)
+            swordsmanSpawnDelay = 0.0f;
+        
+        DetermineSpawnLocation();
+
+        GameObject.Instantiate(archerPrefab, currentSpawnLocation, Quaternion.identity);
+        currentNumOfEnemies++;
+        numOfArchersSpawnedThisWave++;
+
+        StartCoroutine(nameof(SwordsmanWaitForDelay));
     }
 
     void DetermineSpawnLocation()
@@ -86,45 +116,19 @@ public class EnemySpawnManager : MonoBehaviour
         } while (!isValidSpawnLocation);
     }
 
-    void DetermineEnemy()
+    IEnumerator ArcherWaitForDelay()
     {
-        if (currentNumOfArchers < minNumOfArchers || currentNumOfSwordsmen == maxNumOfSwordsmen)
-        {
-            if(currentNumOfArchers < minNumOfArchers)
-                Debug.Log("Spawn Condition 0.5");
-            else
-                Debug.Log("Spawn Condition 1");
-            currentEnemyToSpawn = archerPrefab;
-            currentNumOfArchers++;
-        }
-        else if (currentNumOfSwordsmen < minNumOfSwordsmen || currentNumOfArchers == maxNumOfArchers)
-        {
-            if (currentNumOfSwordsmen < minNumOfSwordsmen)
-                Debug.Log("Spawn Condition 1.5");
-            else
-                Debug.Log("Spawn Condition 2");
-            currentEnemyToSpawn = swordsmanPrefab;
-            currentNumOfSwordsmen++;
-        }
-        else if (UnityEngine.Random.Range(0, 2) == 0)
-        {
-            Debug.Log("Spawn Condition 3");
-            currentEnemyToSpawn = archerPrefab;
-            currentNumOfArchers++;
-        }
-        else
-        {
-            Debug.Log("Spawn Condition 4");
-            currentNumOfSwordsmen++;
-            currentEnemyToSpawn = swordsmanPrefab;
-        }
-
+        isArcherSpawnDelayed = true;
+        yield return new WaitForSeconds(archerSpawnDelay);
+        isArcherSpawnDelayed = false;
     }
 
-    IEnumerator WaitForDelay()
+    IEnumerator SwordsmanWaitForDelay()
     {
-        isSpawnDelayed = true;
-        yield return new WaitForSeconds(currentDelayBeforeNextSpawn);
-        isSpawnDelayed = false;
+        isSwordsmanSpawnDelayed = true;
+        yield return new WaitForSeconds(swordsmanSpawnDelay);
+        isSwordsmanSpawnDelayed = false;
     }
 }
+
+
