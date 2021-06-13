@@ -93,7 +93,7 @@ public class AllyLocationFollower : MonoBehaviour
         }
         else if(needsToApproach)
         {
-            if(timeRealizing > 0)
+            if(timeRealizing >= 0)
             {
                 timeRealizing -= Time.deltaTime;
             }

@@ -39,11 +39,12 @@ public class AllyDirectionFollower : MonoBehaviour
         {
             timeRealizing = delayPerUnitOfDistance * (transform.position - player.transform.position).magnitude * reactionBoon;
             timeRealizingStart = timeRealizing;
+            if (timeRealizingStart == 0) timeRealizingStart = 1;
             needsToTurn = true;
         }
         else if (needsToTurn)
         {
-            if (timeRealizing > 0)
+            if (timeRealizing >= 0)
             {
                 timeRealizing -= Time.deltaTime;
                 if (timeRealizing <= 0)
@@ -61,11 +62,12 @@ public class AllyDirectionFollower : MonoBehaviour
         {
             stanceTimeRealizing = delayPerUnitOfDistance * (transform.position - player.transform.position).magnitude * reactionBoon;
             stanceTimeRealizingStart = stanceTimeRealizing;
+            if (stanceTimeRealizingStart == 0) stanceTimeRealizingStart = 1;
             needsToStanceSwap = true;
         }
         else if (needsToStanceSwap)
         {
-            if (stanceTimeRealizing > 0)
+            if (stanceTimeRealizing >= 0)
             {
                 stanceTimeRealizing -= Time.deltaTime;
                 if (stanceTimeRealizing <= 0)
