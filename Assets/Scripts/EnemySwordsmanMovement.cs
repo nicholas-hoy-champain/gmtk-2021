@@ -17,9 +17,12 @@ public class EnemySwordsmanMovement : MonoBehaviour
     bool isMoving = true;
     bool alive = true;
 
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -52,6 +55,9 @@ public class EnemySwordsmanMovement : MonoBehaviour
             currentDir = MoveDirection.DOWN;
         }
         //Debug.Log("Current Inputdir = " + direction + " Now facing: " + currentDir);
+
+        anim.SetFloat("faceX", direction.x);
+        anim.SetFloat("faceY", direction.y);
     }
 
     void Movement()
@@ -60,6 +66,7 @@ public class EnemySwordsmanMovement : MonoBehaviour
         direction = direction.normalized;
 
         rb.velocity = (direction * moveSpeed);
+        anim.SetFloat("speed", rb.velocity.magnitude);
     }
 
     void DetermineTarget()
@@ -93,7 +100,8 @@ public class EnemySwordsmanMovement : MonoBehaviour
     IEnumerator Kill(AllyCombatStatus killee)
     {
         isMoving = false;
-        
+
+        anim.SetTrigger("strike");
 
         if (killee.isPlayer)
             killee.DamagePlayer(1);
