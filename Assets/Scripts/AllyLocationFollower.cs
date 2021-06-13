@@ -83,6 +83,7 @@ public class AllyLocationFollower : MonoBehaviour
         {
             timeRealizing = delayPerUnitOfDistance * (transform.position - player.transform.position).magnitude * reactionBoon;
             timeRealizingStart = timeRealizing;
+            if (timeRealizingStart == 0) timeRealizingStart = 1;
             needsToApproach = true;
         }
         else if(needsToApproach && distance < accecptableDistance && player.GetComponent<Rigidbody2D>().velocity.sqrMagnitude < .1f)
