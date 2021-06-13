@@ -78,6 +78,7 @@ public class CardinalArrow : MonoBehaviour
                 if(successShieldDirection == statusOfAlly.currentDirection)
                 {
                     Debug.Log("successfully blocked arrow");
+                    statusOfAlly.PlayArrowBlocked();
                     GameObject.Destroy(this.gameObject);
                 }
                 else
